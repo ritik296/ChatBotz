@@ -1,0 +1,104 @@
+.card{
+    height: 60px;
+    width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    margin: 6px 0px;
+    padding: 33px 5px;
+    cursor: pointer;
+}
+
+.card:hover{
+    background: rgba(255, 0, 0, 0.055);
+    border-radius: 10px;
+    box-shadow: 0 0 8px rebeccapurple;
+}
+
+.active{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 6px 0px;
+    padding: 33px 5px;
+    cursor: pointer;
+    background: rgba(255, 0, 0, 0.055);
+    border-radius: 10px;
+    box-shadow: 0 0 8px rebeccapurple;
+}
+
+.avatarImg{
+    border: 2px solid white;
+    border-radius: 100px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rebeccapurple;
+}
+
+.imgDot{
+    width: 15px;
+    height: 15px;
+    background: red;
+    border: 1px solid white;
+    border-radius: 20px;
+    position: relative;
+    top: 18px;
+    right: 17px;
+}
+
+.info{
+    /* border: 1px solid black; */
+}
+
+.name{
+    margin: 0px;
+    padding: 0px;
+    color: black;
+    font-weight: bold;
+    margin: 0 0 4px 0;
+}
+
+.message{
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px;
+    color: rgb(104, 103, 103);
+}
+
+.update{
+    /* border: 1px solid black; */
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.time{
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0px 0 10px 0;
+    color: rgb(54, 53, 53);
+}
+
+.count{
+    width: 20px;
+    height: 20px;
+    background: rgb(211, 100, 36);
+    /* display: inline-block; */
+    border-radius: 100px;
+    /* display: flex; */
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    box-shadow: 0 0 15px grey;
+    font-size: 14px;
+}
+
+.divider{
+    border: 1px solid grey;
+    width: 60%;
+    margin: auto;
+}

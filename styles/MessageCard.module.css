@@ -1,0 +1,67 @@
+.messageCard{
+    /* display: flex; */
+    margin: 30px 0;
+    width: 100%;
+    display: block;
+}
+
+.reciver{
+    max-width: 500px;
+    width: fit-content;
+    padding: 10px;
+    background: rgba(102, 51, 153, 0.1);
+    border: 2px solid #54396d;
+    border-radius: 0px 20px 20px 20px;
+    box-shadow: 0 0 10px grey;
+    margin: 30px 20px;
+}
+
+.sender{
+    /* display: inline-block; */
+    margin: 30px 20px 10px auto;
+    /* min-width: 200px; */
+    max-width: 500px;
+    width: fit-content;
+    padding: 10px;
+    background: #54396d;
+    color: white;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 20px 0px 20px 20px;
+    box-shadow: 0 0 10px #54396d;
+    /* margin: 10px; */
+}
+
+.time{
+    margin: 0;
+    padding: 0;
+    text-align: end;
+    margin: 0 5px 0 0;
+    font-size: 13px;
+}
+
+.message{
+    margin: 5px 20px 5px 10px;
+    padding: 0;
+    line-height: 1.7;
+}
+
+
+/* *********************************** Dates ****************************************** */
+
+.dates{
+    display: flex;
+    margin: 17px;
+    position: sticky;
+    top: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.dates h4{
+    margin: 0;
+    padding: 3px 5px;
+    background: white;
+    /* border: 1px solid black; */
+    box-shadow: 0 0 10px grey;
+    border-radius: 10px;
+}

@@ -1,0 +1,77 @@
+.messageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: sticky; */
+    margin-top: 10px;
+    position: sticky;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2147483647;
+}
+
+.messageSend{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 100px;
+    height: 60px;
+    padding: 0 20px;
+    background: rgba(102, 51, 153, 0.13);
+    /* width: 80%; */
+}
+
+
+.text{
+    height: 40px;
+    font-size: 19px;
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: black;
+    margin: 0 15px;
+    width: 400px;
+}
+
+.text:focus{
+    outline: none;
+}
+
+.pinFile{
+    margin-top: 3px;
+}
+
+.sendBtn{
+    height: 70px;
+    width: 70px;
+    border: 0px;
+    background: orange;
+    border-radius: 100px;
+    padding: 2px 2px 0 0;
+    margin: 0 0 0 20px;
+    box-shadow: 0 0 10px rebeccapurple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sendBtn:hover{
+    background: oldlace;
+    border: 3px solid orange;
+    box-shadow: 0 0 15px rebeccapurple;
+}
+
+.emoji{
+    margin-top: 4px;
+    /* display: flex; */
+}
+
+.emojiPicker{
+    /* display: none; */
+    position: absolute;
+    /* margin: 0 0 100px 0; */
+    bottom: 70px;
+
+}
