@@ -19,8 +19,7 @@ import { io } from "socket.io-client";
 export default function Home() {
     let router = useRouter();
     const bottomRef = useRef(null);
-    // const socket = useRef();
-    // var socket;
+    
     var [socket, setSocket] = useState();
     const [contacts, setContact] = useState([]);
     const [userToken, setUserToken] = useState();
