@@ -8,16 +8,23 @@ export default function handler(req, res) {
             } else {
                 data = JSON.parse(data);
                 let cred = req.body;
-
+                console.log(cred.contact)
                 if (cred.contact in data) {
-                    console.log(cred.contact)
-                    if(cred.password == data[cred.contact]["password"]){
-                        res.status(200).json({"token": data[cred.contact]["token"]});
+                    // console.log(cred.contact)
+                    if(data[cred.contact]["name"]){
+                        console.log(data[cred.contact])
+                        if(cred.password == data[cred.contact]["password"]){
+                            res.status(200).json({"token": data[cred.contact]["token"]});
+                        }
+                        else{
+                            res.status(400).json({"error": "Invaild password"});
+                        }
                     }
                     else{
-                        res.status(400).json({"error": "Invaild password"});
+                        res.status(404).json({"error": "No such user exist"});
                     }
-                } else {
+                } 
+                else {
                     res.status(404).json({"error": "No such user exist"});
                 }
             }

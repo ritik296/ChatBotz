@@ -20,11 +20,11 @@ const SocketHandler = (req, res) => {
             })
 
             socket.on("send-msg", data => {
-                const sendUserSocket = onlineUser.get(data.token);
+                const sendUserSocket = onlineUser.get(data.otherToken);
                 // console.log("work")
                 if(sendUserSocket) {
-                    console.log(data.message, " ", data.token)
-                    socket.to(sendUserSocket).emit("recive-msg", {"message": data.message, "time": data.time});
+                    // console.log(data.userToken, " ", data.otherToken)
+                    socket.to(sendUserSocket).emit("recive-msg", {"message": data.message, "time": data.time, "senderT": data.userToken});
                 }
             })
         });

@@ -19,9 +19,9 @@ const Navbar = () => {
             </div>
             <div className={styles.navigationContainer}>
                 <ul>
-                    <li className={`${styles.navLink} ${styles.active}`}><Link href='#'>HOME</Link></li>
-                    <li className={styles.navLink}><Link href='#'>CHAT</Link></li>
-                    <li className={styles.navLink}><Link href='#'>CONTACTS</Link></li>
+                    <li className={`${styles.navLink}`}><Link href='#'>HOME</Link></li>
+                    <li className={`${styles.navLink} ${styles.active}`}><Link href='#'>CHAT</Link></li>
+                    <li className={styles.navLink}><Link href='#'>PROFILE</Link></li>
                     <li className={styles.navLink}><Link href='#'>SETTINGS</Link></li>
                     <li className={styles.navLink}><Link href='#'>FAQS</Link></li>
                     <li className={styles.navLink}><Link href='#'>TERMS OF USE</Link></li>

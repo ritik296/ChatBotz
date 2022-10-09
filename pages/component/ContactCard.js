@@ -1,14 +1,15 @@
+import { useState } from 'react'
 import styles from '../../styles/ContactCard.module.css'
 // import Image from 'next/image';
 // import React, { useState, useEffect } from "react";
 
 
 const ContactCard = (props)=>{
-    const clickedCard = props.func
-
+    const clickedCard = props.func;
+    
     return(
         <div>
-            <div className={styles.card} id={`${props.name}-${props.message}`} onClick={()=> clickedCard(props.otherToken, `${props.name}-${props.message}`)}>
+            <div className={styles.card} id={`${props.name}-${props.message}`} onClick={()=> {clickedCard(props.otherToken, `${props.name}-${props.message}`)}}>
                 <div className={styles.avatarImg}>
                     <img
                         src="/avatar.png"
@@ -22,7 +23,7 @@ const ContactCard = (props)=>{
                     <p className={styles.message}>{props.message}</p>
                 </div>
                 <div className={styles.update}>
-                    <p className={styles.time}>{props.time}</p>
+                    <p className={styles.time}>{new Date(props.time).toTimeString().slice(0,5)}</p>
                     <div className={styles.count}>{props.count}</div>
                 </div>
             </div>

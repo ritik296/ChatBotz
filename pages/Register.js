@@ -35,6 +35,7 @@ const Register = () => {
             }
             else if (String(data.token) != "undefined") {
                 localStorage.setItem("token", data.token);
+                localStorage.setItem("contact", contact);
                 router.push("/");
             }
         }

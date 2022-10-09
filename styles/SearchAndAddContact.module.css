@@ -1,0 +1,84 @@
+.SearchAndAddContactContiner{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: white;
+    padding-bottom: 12px;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 50px;
+    margin: 0px 10px 0 5px;
+    padding: 10px 10px;
+    box-shadow: 0 0 10px grey;
+    border-radius: 10px;
+}
+
+.searchInput{
+    /* display: none; */
+    width: 245px;
+    height: 30px;
+    margin: 0 0 0 10px;
+    border: none;
+    font-size: large;
+    /* transition: width 2s; */
+}
+
+.searchInputTransition{
+    width: 0px;
+}
+
+.searchInput:hover{
+    width: 245px;
+}
+
+.searchInput:focus{
+    outline: none;
+}
+
+.contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 50px;
+    width: fit-content;
+    margin: 0px 5px;
+    padding: 10px 10px;
+    box-shadow: 0 0 10px grey;
+    border-radius: 10px;
+}
+
+.contactInputs{
+    /* display: none; */
+    width: 254px;
+    /* width: 0px; */
+    /* transition: width 2s; */
+}
+
+.contactInputs input:first-child{
+    margin-bottom: 5px;
+}
+
+.contactInputs input{
+    width: 230px;
+    height: 30px;
+    margin: 0 0 0 10px;
+    font-size: large;
+}
+
+.contactInputs input:focus{
+    outline: none;
+}
+
+.errorPara{
+    margin: 0 0 0 10px;
+    color: red;
+    font-size: smaller;
+    /* display: none; */
+}

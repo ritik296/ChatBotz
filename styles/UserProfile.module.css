@@ -1,0 +1,280 @@
+.container{
+    padding: 20px 0 0 0;
+}
+
+.avatarContainer{
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.avatarImgCon{
+    box-shadow: 0 0 15px grey;
+    border-radius: 100px;
+}
+
+.avatarImg{
+    border-radius: 100px;
+}
+
+.editAvatar{
+    z-index: 30;
+    width: 25px;
+    height: 25px;
+    border-radius: 100px;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rebeccapurple;
+    box-shadow: 0 0 10px grey;
+    color: white;
+    position: relative;
+    border: 2px solid white;
+    top: 95px;
+    left: 69px;
+    display: none;
+}
+
+.nameContainer{
+    margin-top: 14px;
+}
+
+.name{
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.communicationWaysContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.commBtnContiner{
+    margin: 5px 15px;
+}
+
+.commBtn{
+    background: rgb(231, 231, 231);
+    padding: 8px;
+    border-radius: 100px;
+    /* border: 2px solid white; */
+    /* box-shadow: 0 0 10px grey; */
+
+}
+
+.commBtn:hover{
+    background: white;
+    box-shadow: 0 0 10px grey;
+}
+
+.lineBreak{
+    height: 3px;
+    background: grey;
+    margin: 15px 85px;
+    border-radius: 10px;
+}
+
+.infoContainer{
+    margin-top: -13px;
+    padding: 0px 25px;
+    display: flex;
+}
+
+.infoKeys{
+    color: gray;
+    font-weight: bold;
+}
+
+.key{
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.keyIcon{
+
+}
+
+.keyText{
+    margin: 0 0 0 12px;
+}
+
+.infoValues{
+    color: black;
+    margin: 0 0 0 23px;
+}
+
+.value{
+    margin: 15px 0;
+}
+
+.tagValues{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    width: 262px;
+}
+
+.tag{
+    background: rgb(212, 212, 212);
+    margin: -2px 8px 15px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 7px;
+    border-radius: 100px;
+}
+
+.tag:hover {
+    background: white;
+    box-shadow: 0 0 8px grey;
+    cursor: pointer;
+}
+
+.tagDot{
+    width: 12px;
+    height: 12px;
+    background: rgb(9, 177, 135);
+    border-radius: 100px;
+}
+
+.tagName{
+    margin: 0 4px 0 4px;
+}
+
+.commentLineBreak{
+    height: 3px;
+    background: grey;
+    margin: -11px 85px 15px 85px;
+    border-radius: 10px;
+}
+
+.commentContainer{
+
+}
+
+.commentBox{
+    margin: 13px 25px;
+    padding: 5px;
+    /* border: 2px solid grey; */
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0 0 5px grey;
+}
+
+.commentAvatar{
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+}
+
+.commentAvatar img{
+    border-radius: 100px;
+    box-shadow: 0 0 5px grey;
+}
+
+.commentContent{
+    margin: 0 0 0 10px;
+}
+
+.commentHead {
+    display: flex;
+    color: grey;
+}
+
+.commentName {
+    font-weight: bold;
+    font-size: large;
+}
+
+.commentTime{
+    margin: 0 10px 0 auto;
+    font-size: small;
+    font-weight: 700;
+}
+
+.commentBody{
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
+}
+
+.paragraphOverFlow{
+    color: rgb(9, 177, 135);
+    font-size: small;
+}
+
+.sendCommentContainer {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 7px 0;
+}
+
+.sendCommentBox{
+    margin: 0 25px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    background: white;
+    padding: 14px;
+    /* box-shadow: 0 0 10px grey; */
+    /* margin-top: 100px; */
+}
+
+.commentInput{
+    margin: 0 0 0 5px;
+}
+
+.commentInput input{
+    /* border: 1px solid black; */
+    font-size: large;
+    width: 335px;
+    font-weight: 500;
+}
+
+.commentInput input:focus {
+    outline: none;
+}
+
+.functionlity {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btnBox {
+    color: grey;
+    border-radius: 100px;
+    padding: 5px;
+}
+
+.btnBox:hover {
+    box-shadow: 0 0 10px grey;
+    color: black;
+}
+
+
+.commentSend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 110px;
+    background: white;
+    color: grey;
+    border-radius: 100px;
+    padding: 5px;
+    width: 50px;
+}
+
+.commentSend:hover {
+    box-shadow: 0 0 10px grey;
+    color: black;
+}

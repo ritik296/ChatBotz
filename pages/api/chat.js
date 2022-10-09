@@ -22,6 +22,32 @@ export default async function handler(req, res) {
                 if(pdata[senderToken][reciverToken]["total"] < final){
                   final = pdata[senderToken][reciverToken]["total"]%limit;
                 }
+                const resetCount = async() =>{
+                  fs.readFile("DataBase/ContactList.json", 'utf-8', (err, conData) => {
+                    if(err){
+                      res.status(500).json({ "error": err})
+                    }
+                    else{
+                      conData = JSON.parse(conData);
+
+                      for(let i = 0; i < conData[senderToken].length; i++){
+                        if (conData[senderToken][i]["token"] == reciverToken){
+                          conData[senderToken][i]["count"] = 0;
+                          break;
+                        }
+                      }
+
+                      let parsedConData = JSON.stringify(conData);
+
+                      fs.writeFile("DataBase/ContactList.json", parsedConData, (err) => {
+                        if(err) throw err;
+                        console.log("Cotact List Updated");
+                      })
+                    }
+                  })
+                }
+
+                resetCount();
 
                 res.status(200).json(pdata[senderToken][reciverToken]["messages"].slice(intial, final).reverse())
               }
@@ -41,6 +67,44 @@ export default async function handler(req, res) {
                     // Error checking
                     if (err) throw err;
                     console.log("Message sended");
+
+                    async function updateContactListDetail(){  
+                      fs.readFile("DataBase/ContactList.json", 'utf-8', (err, conData) => {
+                        if(err){
+                          res.status(500).json({ "error": err})
+                        }
+                        else{
+                          conData = JSON.parse(conData);
+
+                          for(let i = 0; i < conData[senderToken].length; i++){
+                            if (conData[senderToken][i]["token"] == reciverToken){
+                              conData[senderToken][i]["message"] = text;
+                              conData[senderToken][i]["time"] = time;
+                              // conData[senderToken][i]["count"] = String(parseInt(conData[senderToken][i]["count"]) + 1);
+                              break;
+                            }
+                          }
+
+                          for(let i = 0; i < conData[reciverToken].length; i++){
+                            if (conData[reciverToken][i]["token"] == senderToken){
+                              conData[reciverToken][i]["message"] = text;
+                              conData[reciverToken][i]["time"] = time;
+                              conData[reciverToken][i]["count"] ++;
+                              break;
+                            }
+                          }
+
+                          let parsedConData = JSON.stringify(conData);
+
+                          fs.writeFile("DataBase/ContactList.json", parsedConData, (err) => {
+                            if(err) throw err;
+                            console.log("Cotact List Updated");
+                          })
+                        }
+                      })
+                    }
+
+                    updateContactListDetail();
                 });
                 // let senderData = pdata[senderToken]
                 // console.log(senderData)
@@ -50,13 +114,11 @@ export default async function handler(req, res) {
           })
     }
     else{
-        res.status(500).json({"error": "Invalid request method"})
+        res.status(500).json({"error": "Invalid request method"});
     }
 }
 
-const sendMessage = () =>{
 
-}
 
 
 // Body for a fetch messages 
