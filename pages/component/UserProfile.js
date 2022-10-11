@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "../../styles/UserProfile.module.css";
 import { BiPhoneCall, BiSend } from "react-icons/bi";
-import { AiOutlinePaperClip } from "react-icons/ai";
+import { AiOutlinePaperClip, AiTwotoneHeart } from "react-icons/ai";
 import { TiThMenu } from "react-icons/ti";
-// import { IoSend } from "react-icons/io";
 import { TbMessageCircle } from "react-icons/tb";
 import { GoMail } from "react-icons/go";
 import { BsThreeDots, BsTelephoneFill } from "react-icons/bs";
@@ -32,7 +31,7 @@ const UserProfile = () => {
                         <button className={styles.commBtn}><BiPhoneCall size={25} /></button>
                     </div>
                     <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn}><TbMessageCircle size={25} /></button>
+                        <button className={styles.commBtn}><AiTwotoneHeart size={25} /></button>
                     </div>
                     <div className={styles.commBtnContiner}>
                         <button className={styles.commBtn}><GoMail size={25} /></button>

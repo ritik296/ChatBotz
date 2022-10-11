@@ -29,6 +29,7 @@ export default function Home() {
     const [arrivalMessage, setArrivalMessage] = useState(null);
     const [updateContact, setUpdateContact] = useState(null);
 
+    const [selectedContactCard, setSelectedContactCard] = useState();
     const [card, setCard] = useState();
     const [state, setState] = useState(false);
 
@@ -38,6 +39,8 @@ export default function Home() {
         fetchUserDetail().then((res) => {
             setUserToken(String(res));
             getContact(String(res));
+            // console.log("fetch user detail");
+            // console.log("getContact runing")
         });
     }, []);
 
@@ -64,29 +67,15 @@ export default function Home() {
     useEffect(() => {
         if (socket) {
             socket.on("recive-msg", (msg) => {
-                setArrivalMessage({text: msg.message, time: msg.time, type: "reciver", "tokenId": msg.senderT});
                 getContact(userToken);
+                setArrivalMessage({text: msg.message, time: msg.time, type: "reciver", "tokenId": msg.senderT});
             });
         }
     }, [socket]);
 
     useEffect(() => {
         // arrivalMessage &&
-        if(arrivalMessage){
-            if (arrivalMessage.tokenId == selectedContact){
-                // console.log("if ", arrivalMessage.tokenId, " ", selectedContact);
-                setMessages((messages) => [...messages, {text: arrivalMessage.text, time: arrivalMessage.time, type: "reciver"}]);
-                for (let i = 0; i < contacts.length; i++){
-                    // console.log(i, " ", contacts[i]["token"] , " ", arrivalMessage.tokenId);
-                    if (contacts[i]["token"] == arrivalMessage.tokenId){
-                        // contacts[i]["count"] =0;
-                        // console.log(contacts[i]["count"]);
-                        break;
-                    }
-                }
-                setContact(contacts);
-            }
-        }
+        onMessageArrival(arrivalMessage);
     }, [arrivalMessage]);
 
     useEffect(() => {
@@ -105,6 +94,7 @@ export default function Home() {
     }
 
     async function getContact(token) {
+        // console.log("getContact called")
         let res = await fetch("http://localhost:3000/api/contacts", {
             method: "POST",
             body: JSON.stringify({
@@ -194,6 +184,42 @@ export default function Home() {
         setState(true);
     }
 
+    async function onMessageArrival(msg){
+        if(msg){
+            // let tok;
+            if (msg.tokenId == selectedContact){
+                await setMessages((messages) => [...messages, {text: msg.text, time: msg.time, type: "reciver"}]);
+                await resetMessageCount(userToken, msg.tokenId);
+
+                // tok = msg.tokenId;
+            }
+            // else{
+            //     for (let i = 0; i < contacts.length; i++){
+            //         if (contacts[i]["token"] == msg.tokenId){
+            //             contacts[i]["count"]++ ;
+            //             console.log(contacts[i]["count"]);
+            //             break;
+            //         }
+            //     }
+            //     // setContact(contacts);
+            // }
+            // for (let i = 0; i < contacts.length; i++){
+            //     if (contacts[i]["token"] == tok){
+            //         contacts[i]["message"] = msg.text;
+            //         contacts[i]["time"] = msg.time;
+            //         console.log(contacts[i]["message"]);
+            //         console.log(contacts[i]["time"]);
+            //         break;
+            //     }
+            // }
+            // setContact(contacts);
+        }
+    }
+
+    function setCC(a){
+        selectedContactCard(a);
+    }
+
     return (
         <>
             <Navbar />
@@ -214,7 +240,11 @@ export default function Home() {
                                     count={contact.count}
                                     otherToken={contact.token}
                                     selfToken={userToken}
-                                    func={getMessage} />
+                                    func={getMessage} 
+                                    countState={selectedContactCard == contact.token? false : (contact.count === 0 ? false : true)}
+                                    // countState={true}
+                                    seleCard={setSelectedContactCard}
+                                    />
                             );
                         })}
                     </div>
@@ -254,4 +284,9 @@ export default function Home() {
             </div>
         </>
     );
+}
+
+
+async function resetMessageCount(t1, t2){
+    fetch(`http://localhost:3000/api/reset-message-count?yourToken=${t1}&otherToken=${t2}`).then((res) => {return res}).then((data) => {console.log(data)});
 }
