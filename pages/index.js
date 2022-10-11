@@ -34,6 +34,7 @@ export default function Home() {
     const [state, setState] = useState(false);
 
     const [messageSendBarToggle, setMessageSendBarToggle] = useState(false);
+    const [profileToggle, setProfileToggle] = useState(false);
 
     useEffect(() => {
         fetchUserDetail().then((res) => {
@@ -220,6 +221,37 @@ export default function Home() {
         selectedContactCard(a);
     }
 
+    const [profileData, setProfileData] = useState();
+
+    useEffect(() => {
+        if(selectedContactCard){
+            getProfile();
+        }
+        // console.log(props.userToken, " ", props.otherToken);
+    }, [selectedContactCard]);
+    
+    async function getProfile() {
+        let res = await fetch("http://localhost:3000/api/get-profile", {
+            method: "POST",
+            body: JSON.stringify({
+                yourToken: userToken,
+                otherToken: selectedContactCard
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        });
+        if(res.status === 200){
+            let data = await res.json();
+            setProfileData(data);
+            setProfileToggle(true);
+        }
+        else {
+            setProfileToggle(false);
+        }
+        // console.log(data)
+    }
+
     return (
         <>
             <Navbar />
@@ -278,7 +310,10 @@ export default function Home() {
                     </div>
                 </div>
                 <div className={stylesLayout.profile}>
-                    <UserProfile />
+                    {
+                        profileToggle && 
+                        <UserProfile data={profileData} yourToken={userToken} otherToken={selectedContactCard}/>
+                    }
                     {/* <iframe src="https://rapid-cloud.co/embed-6/QcYzKwYtxRsV?vast=1&autoPlay=1&oa=0&asi=1" frameborder="0" referrerpolicy="strict-origin" allow="autoplay; fullscreen"></iframe> */}
                 </div>
             </div>

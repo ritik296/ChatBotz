@@ -63,7 +63,7 @@ const Login = () => {
                     </div>
                 </div>
             </section>
-            <iframe id="iframe-embed" src="https://rapid-cloud.co/embed-6/QcYzKwYtxRsV?vast=1&amp;autoPlay=1&amp;oa=0&amp;asi=1" frameborder="0" referrerpolicy="strict-origin" allow="autoplay; fullscreen" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" style=""></iframe>
+            {/* <iframe id="iframe-embed" src="https://rapid-cloud.co/embed-6/QcYzKwYtxRsV?vast=1&amp;autoPlay=1&amp;oa=0&amp;asi=1" frameborder="0" referrerpolicy="strict-origin" allow="autoplay; fullscreen" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" style=""></iframe> */}
         </div>
     )
 }
