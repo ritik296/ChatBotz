@@ -254,7 +254,7 @@ export default function Home() {
 
     return (
         <>
-            <Navbar />
+            <Navbar userToken={userToken}/>
             <div className={stylesLayout.container}>
                 <div className={stylesLayout.contact}>
                     <SearchAndAddContact

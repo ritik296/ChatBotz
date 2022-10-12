@@ -13,23 +13,38 @@ export default async function handler(req, res) {
                 let followerToken = cred["follower-token"];
                 let followedToken = cred["followed-token"];
 
-                fs.readFile("DataBase/Profile.json", "utf-8", (err, data) => {
-                    if (err) {
-                        throw err;
-                    } else {
-                        data = JSON.parse(data);
+                if (data[followedToken]["follower-list"].includes(followerToken)){
+                    res.status(200).json({"ok": "your already a follower"});
+                }
+                else {
+                    if (data[followedToken]["profile-type"] == "private") {
 
-                        data[followedToken]["follow-request"].splice(0, 0, {"token": followerToken, "time": new Date()});
-        
+                        data[followedToken]["follow-request"].splice(0, 0, {
+                            token: followerToken,
+                            time: new Date(),
+                        });
+
                         let parseData = JSON.stringify(data);
-    
+
                         fs.writeFile("DataBase/Profile.json", parseData, (err) => {
                             if (err) throw err;
                             console.log("Profile created");
-                            res.status(200).json({ok: "follow request sended"});
-                        });     
+                            res.status(200).json({ "ok": "request sended" });
+                        });
                     }
-                });
+                    else {
+                        data[followedToken]["follower-list"].push(followerToken);
+                        data[followedToken]["follower-count"] ++;
+
+                        let parseData = JSON.stringify(data);
+
+                        fs.writeFile("DataBase/Profile.json", parseData, (err) => {
+                            if (err) throw err;
+                            console.log("Profile created");
+                            res.status(200).json({ "ok": "followed" });
+                        });
+                    }
+                }
             }
         });
     } else {

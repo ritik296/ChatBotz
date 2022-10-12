@@ -19,14 +19,22 @@ const UserProfile = (props) => {
     const [text, setText] = useState("");
     const [protection, setProtection] = useState(false);
     const [attachedEmail, setAttachedEmail] = useState();
+    const [followToggle, setFollowToggle] = useState(false);
+    const [comments, setComments] = useState(profileData["comments"]["comment-list"]);
+    const [followColor, setFollowColor] = useState("black");
+
+    useEffect(() => {
+        checkFollowStatus();
+    }, []);
 
     async function sendComment(){
+        let time = new Date();
         let res = await fetch('http://localhost:3000/api/send-comment', {
             method: 'POST',
             body: JSON.stringify({
                 "reciver-token": props.otherToken,
                 "sender-token": props.yourToken,
-                "time": new Date(),
+                "time": time,
                 "text": text,
                 "protection": !protection ? "public" : "private",
                 "file": "",
@@ -38,9 +46,61 @@ const UserProfile = (props) => {
         })
         if(res.status === 200){
             let data = await res.json();
+            setComments((comments) => [{"sender-name": "Name", "time": time, "sender-image": "", "text": text, "protection": !protection ? "public" : "private", "file": "", "attached-email": attachedEmail, "sender-token": props.yourToken}, ...comments]);
+            // setMessages((messages) => [...messages, mes]);
             setText("");
             setProtection(false);
             setAttachedEmail();
+        }
+    }
+
+    async function sendFollowRequest() {
+        let res = await fetch('http://localhost:3000/api/send-follow-request', {
+            method: 'POST',
+            body: JSON.stringify({
+                "follower-token": props.yourToken,
+                "followed-token": props.otherToken
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        if(res.status === 200){
+            let data = await res.json();
+            if(data["ok"] == "request sended") {
+                setFollowColor("green");
+            }
+            else if(data["ok"] == "followed") {
+                setFollowColor("red");
+            }
+        }
+    }
+
+    async function checkFollowStatus() {
+        let res = await fetch('http://localhost:3000/api/check-follower-status', {
+            method: 'POST',
+            body: JSON.stringify({
+                "sender-token": props.yourToken,
+                "requester-token": props.otherToken
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        let tog;
+        if(res.status === 200){
+            let data = await res.json();
+            tog = data["ok"];
+            setFollowToggle(data["ok"]);
+        }
+        if(tog == "true"){
+            setFollowColor("red");
+        }
+        else if(tog == "pendding"){
+            setFollowColor("green");
+        }
+        else{
+            setFollowColor("black");
         }
     }
 
@@ -63,7 +123,7 @@ const UserProfile = (props) => {
                         <button className={styles.commBtn}><BiPhoneCall size={25} /></button>
                     </div>
                     <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn}><AiTwotoneHeart size={25} /></button>
+                        <button className={styles.commBtn} style={{color : followColor}} onClick={() => sendFollowRequest()}><AiTwotoneHeart size={25} /></button>
                     </div>
                     <div className={styles.commBtnContiner}>
                         <button className={styles.commBtn}><GoMail size={25} /></button>
@@ -107,7 +167,7 @@ const UserProfile = (props) => {
                             <div className={`${styles.value} ${styles.tagValues}`}>
                                 {profileData["personal-detail"]["tags"].map((tag) => {
                                     return (
-                                        <div className={styles.tag}>
+                                        <div className={styles.tag} key={tag}>
                                             <div className={styles.tagDot}></div>
                                             <div className={styles.tagName}>{tag}</div>
                                         </div>
@@ -118,9 +178,9 @@ const UserProfile = (props) => {
                 </div>
                 <div className={styles.commentLineBreak}></div>
                 <div className={styles.commentContainer}>
-                    {profileData["comments"]["comment-list"].map((com) => {
+                    {comments.map((com) => {
                         return (
-                            <div className={styles.commentBox}>
+                            <div className={styles.commentBox} key={com["time"]}>
                                 <div className={styles.commentAvatar}>
                                     <img src={!com["sender-image"] ? "/avatar.png" : com["sender-image"]} alt="" width={50} height={50}/>
                                 </div>

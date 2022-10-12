@@ -14,32 +14,36 @@ export default async function handler(req, res) {
                 let userToken = cred["user-token"];
                 let accept = !cred["accept"] ? false : true;
 
-                fs.readFile("DataBase/Profile.json", "utf-8", (err, data) => {
-                    if (err) {
-                        throw err;
-                    } else {
-                        data = JSON.parse(data);
-
-                        for(let i=0; i<data[userToken]["follow-request"].length ; i++){
-                            if(data[userToken]["follow-request"][i]["token"] == requestToken){
-                                data[userToken]["follow-request"].splice(i, 1);
-                            }
+                if(data[userToken]["follower-list"].includes(requestToken)){
+                    res.status(200).json({ ok: "already a follower" });
+                }
+                else{
+                    for (
+                        let i = 0;
+                        i < data[userToken]["follow-request"].length;
+                        i++
+                    ) {
+                        if (
+                            data[userToken]["follow-request"][i]["token"] ==
+                            requestToken
+                        ) {
+                            data[userToken]["follow-request"].splice(i, 1);
                         }
-
-                        if(accept) {
-                            data[userToken]["follower-list"].splice(0, 0, requestToken);
-                            data[userToken]["follower-count"]++ ;
-                        }
-        
-                        let parseData = JSON.stringify(data);
-    
-                        fs.writeFile("DataBase/Profile.json", parseData, (err) => {
-                            if (err) throw err;
-                            console.log("Profile created");
-                            res.status(200).json({ok: "Request accepted"});
-                        });     
                     }
-                });
+
+                    if (accept) {
+                        data[userToken]["follower-list"].splice(0, 0, requestToken);
+                        data[userToken]["follower-count"]++;
+                    }
+
+                    let parseData = JSON.stringify(data);
+
+                    fs.writeFile("DataBase/Profile.json", parseData, (err) => {
+                        if (err) throw err;
+                        console.log("Profile created");
+                        res.status(200).json({ ok: "Request processed" });
+                    });
+                }
             }
         });
     } else {
