@@ -26,7 +26,7 @@
 }
 
 .profile::-webkit-scrollbar, .messageArea::-webkit-scrollbar, .contactList::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
     /* margin: 20px 0; */
     /* // display: none; */
 }

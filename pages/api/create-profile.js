@@ -12,7 +12,7 @@ export default async function handler(req, res) {
                 let token = cred.token;
 
                 if(data[token]){
-                    res.status(404).json({"error": "Profile already exist"});
+                    res.status(300).json({"error": "profile already exist"});
                 }
                 else {
                     let obj = {
