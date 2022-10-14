@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from './component/Navbar'
 
 const setting = () => {
   return (
-    <div>setting</div>
+    <div>
+      <Navbar index={3}/>
+    </div>
   )
 }
 

@@ -12,6 +12,9 @@ import UserProfile from "./component/UserProfile";
 import stylesLayout from "../styles/Layout.module.css";
 import styles from "../styles/ContactCard.module.css";
 
+import { HiOutlineDotsVertical } from 'react-icons/hi';
+import { CgSearch } from 'react-icons/cg';
+
 import { v4 as uuidv4 } from "uuid";
 
 import { io } from "socket.io-client";
@@ -35,6 +38,10 @@ export default function Home() {
 
     const [messageSendBarToggle, setMessageSendBarToggle] = useState(false);
     const [profileToggle, setProfileToggle] = useState(false);
+    const [profileDataIndigator, setProfileDataIndigator] = useState(false);
+
+    const [otherImage, setOtherImage] = useState("");
+    const [otherName, setOtherName] = useState("");
 
     useEffect(() => {
         fetchUserDetail().then((res) => {
@@ -243,18 +250,20 @@ export default function Home() {
         });
         if(res.status === 200){
             let data = await res.json();
+            setOtherImage(data["image-url"]);
+            // setOtherName(data["name"]);
             setProfileData(data);
-            setProfileToggle(true);
+            setProfileDataIndigator(true);
         }
         else {
-            setProfileToggle(false);
+            setProfileDataIndigator(false);
         }
         // console.log(data)
     }
 
     return (
         <>
-            <Navbar userToken={userToken}/>
+            <Navbar userToken={userToken} index={1}/>
             <div className={stylesLayout.container}>
                 <div className={stylesLayout.contact}>
                     <SearchAndAddContact
@@ -276,16 +285,29 @@ export default function Home() {
                                     countState={selectedContactCard == contact.token? false : (contact.count === 0 ? false : true)}
                                     // countState={true}
                                     seleCard={setSelectedContactCard}
+                                    setDetail={setOtherName}
                                     />
                             );
                         })}
                     </div>
                 </div>
-                <div className={stylesLayout.message}>
-                    <div
-                        className={stylesLayout.messageArea}
-                        id="message-continer"
-                    >
+                <div className={stylesLayout.message} style={{width : !profileToggle? "1340px" : "900px"}}>
+                {messageSendBarToggle && (<>
+                    <div className={stylesLayout.messageContinerHeader}>
+                        <div className={stylesLayout.contactProfile} onClick={() => !profileToggle? setProfileToggle(true): setProfileToggle(false)}>
+                            <img src={otherImage == "" ? "avatar.png" : otherImage} alt="" width={40} height={40}/>
+                            <h3>{otherName == "" ? "Name": otherName}</h3>
+                        </div>
+                        <div className={stylesLayout.messageSearchAndMenu}>
+                            <div className={stylesLayout.messageSearch}>
+                                <CgSearch size={24}/>
+                            </div>
+                            <div className={stylesLayout.messageMenu}>
+                                <HiOutlineDotsVertical size={24}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={stylesLayout.messageArea} id="message-continer">
                         {/* <Dates/> */}
                         {messages.map((message) => {
                             return (
@@ -300,22 +322,23 @@ export default function Home() {
                         <div ref={bottomRef} />
                     </div>
                     <div className={stylesLayout.sendArea}>
-                        {messageSendBarToggle && (
+                        {/* {messageSendBarToggle && ( */}
                             <MessageSend
                                 userToken={userToken}
                                 otherToken={otherToken}
                                 func={sendMessage}
                             />
-                        )}
+                        {/* )} */}
                     </div>
+                    </>)}
                 </div>
-                <div className={stylesLayout.profile}>
-                    {
-                        profileToggle && 
+                {profileToggle &&
+                <div className={stylesLayout.profile}> 
+                    {profileDataIndigator &&
                         <UserProfile data={profileData} yourToken={userToken} otherToken={selectedContactCard}/>
-                    }
+                    }   
                     {/* <iframe src="https://rapid-cloud.co/embed-6/QcYzKwYtxRsV?vast=1&autoPlay=1&oa=0&asi=1" frameborder="0" referrerpolicy="strict-origin" allow="autoplay; fullscreen"></iframe> */}
-                </div>
+                </div>}
             </div>
         </>
     );

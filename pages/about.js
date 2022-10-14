@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from './component/Navbar'
 
 const about = () => {
   return (
-    <div>about</div>
+    <div>
+      <Navbar index={4}/>
+    </div>
   )
 }
 

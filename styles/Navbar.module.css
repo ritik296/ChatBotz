@@ -5,6 +5,8 @@
   justify-content: center;
   width: 100vw;
   padding: 20px 50px;
+  border-bottom: 3px solid red;
+  box-shadow: 0 0 8px red;
 }
 
 /* // Logo part css *********************************** */
@@ -52,7 +54,6 @@
     color: red;
     font-weight: bolder;
     border-bottom: 3px solid red;
-    /* text-decoration: underline; */
 }
 
 /* // search and noti css *************************************** */

@@ -6,12 +6,13 @@ import styles from '../../styles/ContactCard.module.css'
 
 const ContactCard = (props)=>{
     const clickedCard = props.func;
+
     // const [showCount, setShowCount] = useState(false);
     // console.log(props.count)
     
     return(
         <div>
-            <div className={styles.card} id={`${props.name}-${props.message}`} onClick={()=> {clickedCard(props.otherToken, `${props.name}-${props.message}`); props.seleCard(props.otherToken)}}>
+            <div className={styles.card} id={`${props.name}-${props.message}`} onClick={()=> {clickedCard(props.otherToken, `${props.name}-${props.message}`); props.seleCard(props.otherToken); props.setDetail(props.name)}}>
                 <div className={styles.avatarImg}>
                     <img
                         src="/avatar.png"

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaRegUser } from 'react-icons/fa';
 
+import Navbar from "./component/Navbar";
+
 const profile = () => {
   const [name, setName] = useState("Name");
   const [contact, setContact] = useState("Contact");
@@ -15,6 +17,7 @@ const profile = () => {
 
   const [token, setToken] = useState("");
   const [profileData, setProfileData] = useState(null);
+  const [profileUpdate, setProfileUpdate] = useState(0);
 
   useEffect(() => {
     fetchUserDetail();
@@ -52,6 +55,41 @@ const profile = () => {
     else if (res.status == 200){
         let data = await res.json();
         setProfileData(data);
+        setName(data.name);
+        setContact(data.contact);
+        setEmail(data.email);
+        setImageUrl(data["image-url"]);
+        setFollowerCount(data["follower-count"]);
+        setProfileState(data["profile-type"] == "private"? true: false);
+        setCompany(data["personal-detail"]["company"] == "" ? "" : data["personal-detail"]["company"]);
+        setRole(data["personal-detail"]["role"] == "" ? "" : data["personal-detail"]["role"]);
+        setTags(data["personal-detail"]["tags"].join(" "));
+        setEditToggle(false);
+    }
+  }
+
+  async function upDateProfile() {
+    let res = await fetch('http://localhost:3000/api/create-profile', {
+        method: 'POST',
+        body: JSON.stringify({
+            "token": token,
+            "name": name,
+            "email": email,
+            "contact": contact,
+            "image-url": imageUrl,
+            "profile-type": !profileState ? "public": "private",
+            "company": company,
+            "role": role,
+            "tags": tags.toString().split(" ")
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    });
+    if (res.status == 200 || res.status == 300){
+        let data = await res.json();
+        data = data["profile"];
+        setProfileData(data);
         // console.log(data);
         setName(data.name);
         setContact(data.contact);
@@ -61,7 +99,8 @@ const profile = () => {
         setProfileState(data["profile-type"] == "private"? true: false);
         setCompany(data["personal-detail"]["company"] == "" ? "" : data["personal-detail"]["company"]);
         setRole(data["personal-detail"]["role"] == "" ? "" : data["personal-detail"]["role"]);
-        setTags(data["personal-detail"]["tags"]);
+        setTags(data["personal-detail"]["tags"].join(" "));
+        setEditToggle(false);
     }
   }
 
@@ -70,9 +109,11 @@ const profile = () => {
       
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
 
+  <Navbar index={2}/>
 
 
-    <div className="bg-gray-100">
+
+    <div className="">
     <div className="w-full text-white bg-main-color">
         {/* <!-- End of Navbar --> */}
 
@@ -85,7 +126,8 @@ const profile = () => {
                         <div className="image overflow-hidden">
                             <img className="h-auto w-full mx-auto rounded shadow"
                                 src={imageUrl == "" ? "avatar.png" : imageUrl}
-                                alt=""/>
+                                alt=""
+                                style={{width: "282px", height:"282px", 'object-fit': 'cover'}}/>
                         </div>
                         {!editToggle &&
                         <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{name}</h1>}
@@ -96,7 +138,7 @@ const profile = () => {
                             className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                             <li className="flex items-center py-3">
                                 <span>Profile Type</span>
-                                <span className="ml-auto cursor-pointer" onClick={() => !profileState ? setProfileState(true) : setProfileState(false)}><span
+                                <span className="ml-auto cursor-pointer" onClick={() => editToggle ? !profileState ? setProfileState(true) : setProfileState(false) : null}><span
                                         className="bg-emerald-600 py-1 px-2 rounded text-white text-sm" style={{background: !profileState ? "#059669" : "#dc2626"}}>{!profileState ? "Public" : "Private"}</span></span>
                             </li>
                             <li className="flex items-center py-3">
@@ -175,9 +217,9 @@ const profile = () => {
                                 </div>
                             </div>
                         </div>
-                        <button className="block w-full text-teal-900 text-sm font-semibold rounded-lg hover:bg-teal-700 hover:text-white focus:outline-none focus:shadow-outline focus:bg-teal-700 hover:shadow-xs p-3 my-4">SAVE DETAIL</button>
+                        {/* <button className="block w-full text-teal-900 text-sm font-semibold rounded-lg hover:bg-teal-700 hover:text-white focus:outline-none focus:shadow-outline focus:bg-teal-700 hover:shadow-xs p-3 my-4" onClick={() => editToggle ? upDateProfile(): null}>SAVE DETAIL</button> */}
+                        <button className="block p-5 text-20 w-full text-m font-bold rounded-lg border-4 focus:outline-none hover:shadow-xs my-10" style={{background : editToggle ? "#059669" : "white", color : editToggle ? "white" : "#059669", border: editToggle? "none": "4px solid #e5e7eb"}} onClick={() => !editToggle ? setEditToggle(true) : upDateProfile()}>{!editToggle ? "EDIT PROFILE": "SAVE PROFILE"}</button>
                     </div>
-                        <button className="block p-5 w-full text-amber-600 text-sm font-semibold rounded-lg hover:bg-amber-600 border-4 hover:text-white focus:outline-none hover:shadow-xs my-4" style={{background : editToggle ? "#d97706" : "white", color : editToggle ? "white" : "#d97706", border: editToggle? "none": "4px solid #e5e7eb"}} onClick={() => !editToggle ? setEditToggle(true) : setEditToggle(false)}>EDIT PROFILE</button>
                     {/* <!-- End of about section --> */}
                 </div>
             </div>

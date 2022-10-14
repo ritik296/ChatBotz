@@ -12,7 +12,24 @@ export default async function handler(req, res) {
                 let token = cred.token;
 
                 if(data[token]){
-                    res.status(300).json({"error": "profile already exist"});
+                    data[token]["name"] = cred.name;
+                    data[token]["email"] = cred.email;
+                    data[token]["contact"] = cred.contact;
+                    data[token]["image-url"] = cred["image-url"];
+                    data[token]["profile-type"] = cred["profile-type"];
+                    data[token]["personal-detail"]["company"] = cred.company;
+                    data[token]["personal-detail"]["role"] = cred.role;
+                    data[token]["personal-detail"]["tags"] = cred.tags;
+
+                    let parseData = JSON.stringify(data);
+
+                    fs.writeFile("DataBase/Profile.json", parseData, (err) => {
+                        if (err) throw err;
+                        console.log("Profile updated");
+                        res.status(300).json({"ok": "Profile updated", "profile": data[token]});
+                    })
+
+                    // res.status(300).json({"error": "profile already exist"});
                 }
                 else {
                     let obj = {
@@ -46,7 +63,7 @@ export default async function handler(req, res) {
                     fs.writeFile("DataBase/Profile.json", parseData, (err) => {
                         if (err) throw err;
                         console.log("Profile created");
-                        res.status(200).json({"ok": "Profile created"});
+                        res.status(200).json({"ok": "Profile created", "profile": data[token]});
                     })
                 }
             }
