@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 
-const login = () => {
+const Login = () => {
     let router = useRouter();
     
     async function signIn() {
@@ -71,4 +71,4 @@ const login = () => {
     )
 }
 
-export default login
+export default Login

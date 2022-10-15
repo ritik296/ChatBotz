@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 
-const register = () => {
+const Register = () => {
     let router = useRouter();
     async function signUp() {
         let name = document.getElementById("full-name").value;
@@ -119,4 +119,4 @@ const validPassword = (password, ele) => {
     }
 };
 
-export default register
+export default Register
