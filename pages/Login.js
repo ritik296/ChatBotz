@@ -30,7 +30,7 @@ const Login = () => {
         else if(data.error == "No such user exist"){
             console.log("No user exist");
             contactErr.style.display = "block";
-            router.push('/register');
+            router.push('/Register');
         }
         else if(String(data.token) != "undefined"){
             contactErr.style.display = "none";
