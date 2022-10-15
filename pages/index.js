@@ -106,7 +106,7 @@ export default function Home() {
                 ? localStorage.getItem("token")
                 : localStorage.clear();
         if (!token1) {
-            return router.push("Login");
+            return router.push("login");
         }
         return token1;
     }

@@ -24,12 +24,13 @@ const Login = () => {
         })
         let data = await res.json();
         if(data.error == "Invaild password"){
-            contactErr.style.display = "none"
-            passwordErr.style.display = "block"
+            contactErr.style.display = "none";
+            passwordErr.style.display = "block";
         }
         else if(data.error == "No such user exist"){
             console.log("No user exist");
-            contactErr.style.display = "block"
+            contactErr.style.display = "block";
+            router.push('/register');
         }
         else if(String(data.token) != "undefined"){
             contactErr.style.display = "none";
