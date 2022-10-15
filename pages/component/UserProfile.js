@@ -12,12 +12,12 @@ import { TbCircleCheck } from "react-icons/tb";
 import { useState, useEffect } from "react";
 
 const UserProfile = (props) => {
-    let profileData = props.data;
+    // let props.data = props.data;
     const [text, setText] = useState(null);
     const [protection, setProtection] = useState(false);
     const [attachedEmail, setAttachedEmail] = useState(null);
     const [followToggle, setFollowToggle] = useState(false);
-    const [comments, setComments] = useState(profileData["comments"]["comment-list"]);
+    const [comments, setComments] = useState(props.data["comments"]["comment-list"]);
     const [followColor, setFollowColor] = useState("black");
 
     useEffect(() => {
@@ -104,14 +104,14 @@ const UserProfile = (props) => {
         <div className={styles.container}>
             <div className={styles.avatarContainer}>
                 <div className={styles.avatarImg}>
-                    <img src={!profileData["image-url"] ? "/avatar.png" : profileData["image-url"]} alt="" className={styles.avatarImgCon} />
+                    <img src={!props.data["image-url"] ? "/avatar.png" : props.data["image-url"]} alt="" className={styles.avatarImgCon} />
                 </div>
                 <div className={styles.editAvatar}>
                     <HiPencil size={15}/>
                 </div>
             </div>
             <div className={styles.nameContainer}>
-                <h1 className={styles.name}>{profileData.name}</h1>
+                <h1 className={styles.name}>{props.data.name}</h1>
             </div>
             <div className={styles.communicationWaysContainer}>
                 <div className={styles.commBtnContiner}>
@@ -152,15 +152,15 @@ const UserProfile = (props) => {
                     </div>
                 </div>
                 <div className={styles.infoValues}>
-                        <div className={styles.value}>{!profileData["personal-detail"]["company"] ? "Set a Company... " : profileData["personal-detail"]["company"]}</div>
-                        <div className={styles.value}>{!profileData["personal-detail"]["role"] ? "Set a Role... " : profileData["personal-detail"]["role"]}</div>
-                        <div className={styles.value}>{!profileData["personal-detail"]["phone"] ? profileData.contact : profileData["personal-detail"]["phone"]}</div>
-                        <div className={styles.value}>{!profileData["personal-detail"]["emails"] ? profileData.email : profileData["personal-detail"]["emails"]}</div>
+                        <div className={styles.value}>{!props.data["personal-detail"]["company"] ? "Set a Company... " : props.data["personal-detail"]["company"]}</div>
+                        <div className={styles.value}>{!props.data["personal-detail"]["role"] ? "Set a Role... " : props.data["personal-detail"]["role"]}</div>
+                        <div className={styles.value}>{!props.data["personal-detail"]["phone"] ? props.data.contact : props.data["personal-detail"]["phone"]}</div>
+                        <div className={styles.value}>{!props.data["personal-detail"]["emails"] ? props.data.email : props.data["personal-detail"]["emails"]}</div>
                         {/* <div className={styles.value}>Set a Role...</div>
                         <div className={styles.value}>Set a Phone...</div>
                         <div className={styles.value}>Set a Email...</div> */}
                         <div className={`${styles.value} ${styles.tagValues}`}>
-                            {profileData["personal-detail"]["tags"].map((tag) => {
+                            {props.data["personal-detail"]["tags"].map((tag) => {
                                 return (
                                     <div className={styles.tag} key={tag}>
                                         <div className={styles.tagDot}></div>
