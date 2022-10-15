@@ -11,7 +11,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { TbCircleCheck } from "react-icons/tb";
 import { useState, useEffect } from "react";
 
-export const ProfileView = (props) => {
+const ProfileView = (props) => {
     const [text, setText] = useState(null);
     const [protection, setProtection] = useState(false);
     const [attachedEmail, setAttachedEmail] = useState(null);
@@ -231,3 +231,5 @@ export const ProfileView = (props) => {
         </div>
     );
 };
+
+export default ProfileView;
