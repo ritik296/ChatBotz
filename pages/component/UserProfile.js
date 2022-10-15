@@ -9,12 +9,10 @@ import { HiPencil, HiOutlineEmojiHappy } from "react-icons/hi";
 import { FaToolbox, FaUserAlt } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { TbCircleCheck } from "react-icons/tb";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const UserProfile = (props) => {
     let profileData = props.data;
-    // console.log(props.yourToken, " ", props.otherToken);
-
     const [text, setText] = useState(null);
     const [protection, setProtection] = useState(false);
     const [attachedEmail, setAttachedEmail] = useState(null);
@@ -85,21 +83,20 @@ const UserProfile = (props) => {
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             }
-        })
-        let tog;
+        });
         if(res.status === 200){
             let data = await res.json();
-            tog = data["ok"];
             setFollowToggle(data["ok"]);
-        }
-        if(tog == "true"){
-            setFollowColor("red");
-        }
-        else if(tog == "pendding"){
-            setFollowColor("green");
-        }
-        else{
-            setFollowColor("black");
+        
+            if(data["ok"] == "true"){
+                setFollowColor("red");
+            }
+            else if(data["ok"] == "pendding"){
+                setFollowColor("green");
+            }
+            else{
+                setFollowColor("black");
+            }
         }
     }
 
