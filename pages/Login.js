@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 
-const Login = () => {
+const login = () => {
     let router = useRouter();
     
     async function signIn() {
@@ -30,7 +30,7 @@ const Login = () => {
         else if(data.error == "No such user exist"){
             console.log("No user exist");
             contactErr.style.display = "block";
-            router.push('/Register');
+            router.push('/register');
         }
         else if(String(data.token) != "undefined"){
             contactErr.style.display = "none";
@@ -71,4 +71,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default login

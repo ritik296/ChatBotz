@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 
-const Register = () => {
+const register = () => {
     let router = useRouter();
     async function signUp() {
         let name = document.getElementById("full-name").value;
@@ -32,7 +32,7 @@ const Register = () => {
 
             if (data.Login == "User already exist") {
                 console.log("Already have account");
-                router.push("/Login");
+                router.push("/login");
             }
             else if (String(data.token) != "undefined") {
                 localStorage.setItem("token", data.token);
@@ -119,4 +119,4 @@ const validPassword = (password, ele) => {
     }
 };
 
-export default Register
+export default register
