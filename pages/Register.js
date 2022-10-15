@@ -32,7 +32,7 @@ const Register = () => {
 
             if (data.Login == "User already exist") {
                 console.log("Already have account");
-                router.push("/login");
+                router.push("/Login");
             }
             else if (String(data.token) != "undefined") {
                 localStorage.setItem("token", data.token);
