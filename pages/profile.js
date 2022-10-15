@@ -3,7 +3,7 @@ import { FaRegUser } from 'react-icons/fa';
 
 import Navbar from "./component/Navbar";
 
-const Profile = () => {
+const profile = () => {
   const [name, setName] = useState("Name");
   const [contact, setContact] = useState("Contact");
   const [email, setEmail] = useState("Email");
@@ -229,4 +229,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default profile
