@@ -8,7 +8,7 @@ import MessageSend from "./component/MessageSend";
 import MessageCard from "./component/MessageCard";
 import SearchAndAddContact from "./component/SearchAndAddContact";
 // import UserProfile from "./component/UserProfile";
-import ProfileView from "./component/ProfileView";
+// import ProfileView from "./component/ProfileView";
 
 import stylesLayout from "../styles/Layout.module.css";
 import styles from "../styles/ContactCard.module.css";
@@ -397,9 +397,9 @@ export default function Home() {
                         <UserProfile data={profileData} yourToken={userToken} otherToken={selectedContactCard}/>
                     }    */}
 
-                    {profileDataIndigator &&
+                    {/* {profileDataIndigator &&
                         <ProfileView data={profileData} yourToken={userToken} otherToken={selectedContactCard}/>
-                    }   
+                    }    */}
 
                     {/* <iframe src="https://rapid-cloud.co/embed-6/QcYzKwYtxRsV?vast=1&autoPlay=1&oa=0&asi=1" frameborder="0" referrerpolicy="strict-origin" allow="autoplay; fullscreen"></iframe> */}
                 </div>}
