@@ -19,9 +19,12 @@ import { v4 as uuidv4 } from "uuid";
 
 import { io } from "socket.io-client";
 
+import InfiniteScroll from "react-infinite-scroll-component";
+
 export default function Home() {
     let router = useRouter();
     const bottomRef = useRef(null);
+    const messageRef = useRef();
 
     var [socket, setSocket] = useState();
     var [selectedContact, setSelectedContact] = useState(null);
@@ -42,6 +45,8 @@ export default function Home() {
 
     const [otherImage, setOtherImage] = useState("");
     const [otherName, setOtherName] = useState("");
+
+    const [messagePageNo, setMessagePageNo] = useState(1);
 
     useEffect(() => {
         fetchUserDetail().then((res) => {
@@ -87,8 +92,8 @@ export default function Home() {
     }, [arrivalMessage]);
 
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
+        bottomRef.current?.scrollIntoView({behavior: "smooth"});
+    }, [arrivalMessage, messages]);
 
     async function fetchUserDetail() {
         const token1 =
@@ -117,6 +122,7 @@ export default function Home() {
     }
 
     async function getMessage(oToken, id) {
+        // setMessagePageNo(1)
         setSelectedContact(oToken);
         if(!messageSendBarToggle){
             setMessageSendBarToggle(true);
@@ -138,6 +144,7 @@ export default function Home() {
         });
         let mes = await res.json();
         setMessages(mes);
+        setMessagePageNo(2);
 
         for (let i = 0; i < contacts.length; i++){
             if (contacts[i]["token"] == oToken){
@@ -169,7 +176,7 @@ export default function Home() {
             message: text,
             time: time,
         });
-        setMessages((messages) => [...messages, mes]);
+        setMessages((messages) => [mes, ...messages]);
         // console.log(contacts[0]);
 
         for (let i = 0; i < contacts.length; i++){
@@ -196,7 +203,7 @@ export default function Home() {
         if(msg){
             // let tok;
             if (msg.tokenId == selectedContact){
-                await setMessages((messages) => [...messages, {text: msg.text, time: msg.time, type: "reciver"}]);
+                await setMessages((messages) => [{text: msg.text, time: msg.time, type: "reciver"}, ...messages]);
                 await resetMessageCount(userToken, msg.tokenId);
 
                 // tok = msg.tokenId;
@@ -261,6 +268,30 @@ export default function Home() {
         // console.log(data)
     }
 
+    async function getMoreMessages() {
+        console.log(messagePageNo);
+        // setTimeout(async () => {
+            let res = await fetch("http://localhost:3000/api/chat", {
+                method: "POST",
+                body: JSON.stringify({
+                    senderToken: userToken,
+                    reciverToken: selectedContact,
+                    accessType: "read",
+                    limit: 20,
+                    page: messagePageNo,
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                },
+            });
+            let mes = await res.json();
+            // setMessages(mes);
+            console.log(mes)
+            setMessages(messages.concat(mes));
+            setMessagePageNo(messagePageNo+1);
+        // }, 500);
+    }
+
     return (
         <>
             <Navbar userToken={userToken} index={1}/>
@@ -309,16 +340,27 @@ export default function Home() {
                     </div>
                     <div className={stylesLayout.messageArea} id="message-continer">
                         {/* <Dates/> */}
-                        {messages.map((message) => {
-                            return (
-                                <MessageCard
-                                    key={uuidv4()}
-                                    text={message.text}
-                                    time={message.time}
-                                    type={message.type}
-                                />
-                            );
-                        })}
+                        
+                        <InfiniteScroll
+                            dataLength={messages.length}
+                            next={getMoreMessages}
+                            style={{ display: "flex", flexDirection: "column-reverse" }} //To put endMessage and loader to the top.
+                            inverse={true}
+                            hasMore={true}
+                            loader={<h4>Loading...</h4>}
+                            scrollableTarget="message-continer"
+                        >
+                            {messages.map((message) => {
+                                return (
+                                    <MessageCard
+                                        key={uuidv4()}
+                                        text={message.text}
+                                        time={message.time}
+                                        type={message.type}
+                                    />
+                                );
+                            })}
+                        </InfiniteScroll>
                         <div ref={bottomRef} />
                     </div>
                     <div className={stylesLayout.sendArea}>

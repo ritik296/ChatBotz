@@ -49,7 +49,7 @@ export default async function handler(req, res) {
 
                 resetCount();
 
-                res.status(200).json(pdata[senderToken][reciverToken]["messages"].slice(intial, final).reverse())
+                res.status(200).json(pdata[senderToken][reciverToken]["messages"].slice(intial, final))
               }
               else if(accessType == 'write'){
                 let text = req.body.text;
