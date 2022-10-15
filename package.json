@@ -10,7 +10,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p $PORT",
-    "export": "next export"
+    "export": "next export",
+    "lint": "next lint"
   },
   "dependencies": {
     "emoji-picker-react": "^4.1.1",
