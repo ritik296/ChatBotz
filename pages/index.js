@@ -20,11 +20,12 @@ import { v4 as uuidv4 } from "uuid";
 import { io } from "socket.io-client";
 
 import InfiniteScroll from "react-infinite-scroll-component";
+// import InfiniteScrollReverse from "react-infinite-scroll-reverse";
 
 export default function Home() {
     let router = useRouter();
     const bottomRef = useRef(null);
-    const messageRef = useRef();
+    const messageRef = useRef(null);
 
     var [socket, setSocket] = useState();
     var [selectedContact, setSelectedContact] = useState(null);
@@ -47,6 +48,10 @@ export default function Home() {
     const [otherName, setOtherName] = useState("");
 
     const [messagePageNo, setMessagePageNo] = useState(1);
+
+    const [totalCurrentMessage, setTotalCurrentMessage] = useState(0);
+
+    const [checkMoreMessage, setCheckMoreMessage] = useState(true);
 
     useEffect(() => {
         fetchUserDetail().then((res) => {
@@ -92,8 +97,8 @@ export default function Home() {
     }, [arrivalMessage]);
 
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({behavior: "smooth"});
-    }, [arrivalMessage, messages]);
+        bottomRef.current?.scrollIntoView();
+    }, [arrivalMessage, selectedContact]);
 
     async function fetchUserDetail() {
         const token1 =
@@ -143,8 +148,10 @@ export default function Home() {
             },
         });
         let mes = await res.json();
-        setMessages(mes);
+        setMessages(mes.messages);
+        setTotalCurrentMessage(mes.total);
         setMessagePageNo(2);
+        setCheckMoreMessage(true);
 
         for (let i = 0; i < contacts.length; i++){
             if (contacts[i]["token"] == oToken){
@@ -269,27 +276,32 @@ export default function Home() {
     }
 
     async function getMoreMessages() {
-        console.log(messagePageNo);
-        // setTimeout(async () => {
-            let res = await fetch("http://localhost:3000/api/chat", {
-                method: "POST",
-                body: JSON.stringify({
-                    senderToken: userToken,
-                    reciverToken: selectedContact,
-                    accessType: "read",
-                    limit: 20,
-                    page: messagePageNo,
-                }),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                },
-            });
-            let mes = await res.json();
+        // console.log("top");
+
+        if(totalCurrentMessage < 20*(messagePageNo-1)){
+            setCheckMoreMessage(false);
+        }
+
+        let res = await fetch("http://localhost:3000/api/chat", {
+            method: "POST",
+            body: JSON.stringify({
+                senderToken: userToken,
+                reciverToken: selectedContact,
+                accessType: "read",
+                limit: 20,
+                page: messagePageNo,
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        });
+        let mes = await res.json();
             // setMessages(mes);
-            console.log(mes)
-            setMessages(messages.concat(mes));
-            setMessagePageNo(messagePageNo+1);
-        // }, 500);
+            // console.log(mes)
+        setMessagePageNo(messagePageNo+1);
+        setTimeout(() => {
+            setMessages(messages.concat(mes.messages));
+        }, 1000);
     }
 
     return (
@@ -323,55 +335,59 @@ export default function Home() {
                     </div>
                 </div>
                 <div className={stylesLayout.message} style={{width : !profileToggle? "1340px" : "900px"}}>
-                {messageSendBarToggle && (<>
-                    <div className={stylesLayout.messageContinerHeader}>
-                        <div className={stylesLayout.contactProfile} onClick={() => !profileToggle? setProfileToggle(true): setProfileToggle(false)}>
-                            <img src={otherImage == "" ? "avatar.png" : otherImage} alt="" width={40} height={40}/>
-                            <h3>{otherName == "" ? "Name": otherName}</h3>
-                        </div>
-                        <div className={stylesLayout.messageSearchAndMenu}>
-                            <div className={stylesLayout.messageSearch}>
-                                <CgSearch size={24}/>
+                    {messageSendBarToggle && (<>
+                        <div className={stylesLayout.messageContinerHeader}>
+                            <div className={stylesLayout.contactProfile} onClick={() => !profileToggle? setProfileToggle(true): setProfileToggle(false)}>
+                                <img src={otherImage == "" ? "avatar.png" : otherImage} alt="" width={40} height={40}/>
+                                <h3>{otherName == "" ? "Name": otherName}</h3>
                             </div>
-                            <div className={stylesLayout.messageMenu}>
-                                <HiOutlineDotsVertical size={24}/>
+                            <div className={stylesLayout.messageSearchAndMenu}>
+                                <div className={stylesLayout.messageSearch}>
+                                    <CgSearch size={24}/>
+                                </div>
+                                <div className={stylesLayout.messageMenu}>
+                                    <HiOutlineDotsVertical size={24}/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={stylesLayout.messageArea} id="message-continer">
-                        {/* <Dates/> */}
-                        
-                        <InfiniteScroll
-                            dataLength={messages.length}
-                            next={getMoreMessages}
-                            style={{ display: "flex", flexDirection: "column-reverse" }} //To put endMessage and loader to the top.
-                            inverse={true}
-                            hasMore={true}
-                            loader={<h4>Loading...</h4>}
-                            scrollableTarget="message-continer"
-                        >
-                            {messages.map((message) => {
-                                return (
-                                    <MessageCard
-                                        key={uuidv4()}
-                                        text={message.text}
-                                        time={message.time}
-                                        type={message.type}
-                                    />
-                                );
-                            })}
-                        </InfiniteScroll>
-                        <div ref={bottomRef} />
-                    </div>
-                    <div className={stylesLayout.sendArea}>
-                        {/* {messageSendBarToggle && ( */}
-                            <MessageSend
-                                userToken={userToken}
-                                otherToken={otherToken}
-                                func={sendMessage}
-                            />
-                        {/* )} */}
-                    </div>
+                        <div className={stylesLayout.messageArea} id="message-continer" style={{
+                                                                                                overflow: 'auto',
+                                                                                                display: 'flex',
+                                                                                                flexDirection: 'column-reverse'}} 
+                                                                                                ref={messageRef} >
+                            {/* <Dates/> */}
+                            <div ref={bottomRef} />
+                            <InfiniteScroll
+                                dataLength={messages.length}
+                                next={getMoreMessages}
+                                style={{ display: "flex", flexDirection: "column-reverse" }}
+                                inverse={true}
+                                hasMore={true && checkMoreMessage} 
+                                loader={<center><h4>Loading...</h4></center>}
+                                scrollableTarget="message-continer"
+                            >
+                                {messages.map((message) => {
+                                    return (
+                                        <MessageCard
+                                            key={uuidv4()}
+                                            text={message.text}
+                                            time={message.time}
+                                            type={message.type}
+                                        />
+                                    );
+                                })}
+                            </InfiniteScroll>
+                            
+                        </div>
+                        <div className={stylesLayout.sendArea}>
+                            {/* {messageSendBarToggle && ( */}
+                                <MessageSend
+                                    userToken={userToken}
+                                    otherToken={otherToken}
+                                    func={sendMessage}
+                                />
+                            {/* )} */}
+                        </div>
                     </>)}
                 </div>
                 {profileToggle &&

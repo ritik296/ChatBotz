@@ -20,7 +20,7 @@ export default async function handler(req, res) {
                 let intial = limit*(page - 1)
                 let final = limit*(page)
                 if(pdata[senderToken][reciverToken]["total"] < final){
-                  final = pdata[senderToken][reciverToken]["total"]%limit;
+                  final = intial + pdata[senderToken][reciverToken]["total"]%limit;
                 }
                 const resetCount = async() =>{
                   fs.readFile("DataBase/ContactList.json", 'utf-8', (err, conData) => {
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
 
                 resetCount();
 
-                res.status(200).json(pdata[senderToken][reciverToken]["messages"].slice(intial, final))
+                res.status(200).json({"total": pdata[senderToken][reciverToken]["total"], "messages" : pdata[senderToken][reciverToken]["messages"].slice(intial, final)})
               }
               else if(accessType == 'write'){
                 let text = req.body.text;
