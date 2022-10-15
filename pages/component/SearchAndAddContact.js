@@ -37,7 +37,7 @@ const SearchAndAddContact = (props) => {
 
     if (contactToggle) {
       if (validContact(contactText)) {
-        let res = await fetch("http://localhost:3000/api/add-contact", {
+        let res = await fetch("/api/add-contact", {
           method: "POST",
           body: JSON.stringify({
             yourContact: userContact,

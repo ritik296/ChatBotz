@@ -15,7 +15,7 @@ const Register = () => {
         let passwordErr = document.getElementById("password-error");
 
         if (validName(name, nameErr) && validContact(contact, contactErr) && validDob(dob, dobErr) && validPassword(password, passwordErr)) {
-            let res = await fetch('http://localhost:3000/api/user', {
+            let res = await fetch('/api/user', {
                 method: 'POST',
                 body: JSON.stringify({
                     "name": name,

@@ -29,7 +29,7 @@ const UserProfile = (props) => {
 
     async function sendComment(){
         let time = new Date();
-        let res = await fetch('http://localhost:3000/api/send-comment', {
+        let res = await fetch('/api/send-comment', {
             method: 'POST',
             body: JSON.stringify({
                 "reciver-token": props.otherToken,

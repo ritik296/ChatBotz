@@ -39,7 +39,7 @@ const Profile = () => {
   }
 
   async function getProfile() {
-    let res = await fetch('http://localhost:3000/api/get-your-profile', {
+    let res = await fetch('/api/get-your-profile', {
         method: 'POST',
         body: JSON.stringify({
             "your-token": token
@@ -68,7 +68,7 @@ const Profile = () => {
   }
 
   async function upDateProfile() {
-    let res = await fetch('http://localhost:3000/api/create-profile', {
+    let res = await fetch('/api/create-profile', {
         method: 'POST',
         body: JSON.stringify({
             "token": token,

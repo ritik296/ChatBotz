@@ -3,15 +3,16 @@ import { useRouter } from 'next/router';
 
 const Login = () => {
     let router = useRouter();
-
+    
     async function signIn() {
+        // console.log(login);
         let contact = document.getElementById('contact').value;
         let password = document.getElementById("password").value;
 
         let contactErr = document.getElementById('contact-error');
         let passwordErr = document.getElementById("password-error");
 
-        let res = await fetch('http://localhost:3000/api/login', {
+        let res = await fetch('/api/login', {
             method: 'POST',
             body: JSON.stringify({
                 "contact": contact,

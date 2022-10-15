@@ -32,7 +32,7 @@ const Navbar = (props) => {
 
     async function getNotification() {
         setNotificationToggle(true) 
-        let res = await fetch('http://localhost:3000/api/get-follower-notification', {
+        let res = await fetch('/api/get-follower-notification', {
             method: 'POST',
             body: JSON.stringify({
                 "your-token": token
@@ -49,7 +49,7 @@ const Navbar = (props) => {
     }
 
     async function proccedRequest(senderToken){
-        let res = await fetch('http://localhost:3000/api/accept-follower-request', {
+        let res = await fetch('/api/accept-follower-request', {
             method: 'POST',
             body: JSON.stringify({
                 "request-token": senderToken,

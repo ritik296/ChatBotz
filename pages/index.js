@@ -113,7 +113,7 @@ export default function Home() {
 
     async function getContact(token) {
         // console.log("getContact called")
-        let res = await fetch("http://localhost:3000/api/contacts", {
+        let res = await fetch("/api/contacts", {
             method: "POST",
             body: JSON.stringify({
                 token: token,
@@ -134,7 +134,7 @@ export default function Home() {
         }
         setContactCardStyleOnClick(id);
         setOtherToken(oToken);
-        let res = await fetch("http://localhost:3000/api/chat", {
+        let res = await fetch("/api/chat", {
             method: "POST",
             body: JSON.stringify({
                 senderToken: userToken,
@@ -163,7 +163,7 @@ export default function Home() {
     }
 
     async function sendMessage(token1, token2, text) {
-        let res = await fetch("http://localhost:3000/api/chat", {
+        let res = await fetch("/api/chat", {
             method: "POST",
             body: JSON.stringify({
                 senderToken: token1,
@@ -252,7 +252,7 @@ export default function Home() {
     }, [selectedContactCard]);
     
     async function getProfile() {
-        let res = await fetch("http://localhost:3000/api/get-profile", {
+        let res = await fetch("/api/get-profile", {
             method: "POST",
             body: JSON.stringify({
                 yourToken: userToken,
@@ -282,7 +282,7 @@ export default function Home() {
             setCheckMoreMessage(false);
         }
 
-        let res = await fetch("http://localhost:3000/api/chat", {
+        let res = await fetch("/api/chat", {
             method: "POST",
             body: JSON.stringify({
                 senderToken: userToken,
