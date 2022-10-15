@@ -1,5 +1,4 @@
 import React from "react";
-import React from "react";
 import styles from "../../styles/UserProfile.module.css";
 import { BiPhoneCall, BiSend } from "react-icons/bi";
 import { AiOutlinePaperClip, AiTwotoneHeart } from "react-icons/ai";

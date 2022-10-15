@@ -7,6 +7,10 @@
 
 UserProfile.js
 
+.env
+
+utils
+
 # testing
 /coverage
 
