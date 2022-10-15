@@ -31,6 +31,7 @@ const Register = () => {
             let token = String(data.token);
 
             if (data.Login == "User already exist") {
+                console.log("Already have account");
                 router.push("Login");
             }
             else if (String(data.token) != "undefined") {

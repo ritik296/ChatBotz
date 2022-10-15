@@ -27,6 +27,7 @@ const Login = () => {
             passwordErr.style.display = "block"
         }
         else if(data.error == "No such user exist"){
+            console.log("No user exist");
             contactErr.style.display = "block"
         }
         else if(String(data.token) != "undefined"){
