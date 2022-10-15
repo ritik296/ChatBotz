@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import Head from 'next/head'
 
 function MyApp({ Component, pageProps }) {
+  
   return (
     <>
       <Head>
@@ -16,6 +17,7 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp
+
 
 
 // font-family: 'Concert One', cursive;

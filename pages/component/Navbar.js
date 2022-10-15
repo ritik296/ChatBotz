@@ -87,7 +87,7 @@ const Navbar = (props) => {
                 <ul>
                     <li className={activetedNavLink == 0 ?`${styles.navLink} ${styles.active}` : `${styles.navLink}`}><Link href='/home'>HOME</Link></li>
                     <li className={activetedNavLink == 1 ?`${styles.navLink} ${styles.active}` : `${styles.navLink}`}><Link href='/'>CHAT</Link></li>
-                    <li className={activetedNavLink == 2 ?`${styles.navLink} ${styles.active}` : `${styles.navLink}`}><Link href='/profile'>PROFILE</Link></li>
+                    <li className={activetedNavLink == 2 ?`${styles.navLink} ${styles.active}` : `${styles.navLink}`}><Link href='/Profile'>PROFILE</Link></li>
                     <li className={activetedNavLink == 3 ?`${styles.navLink} ${styles.active}` : `${styles.navLink}`}><Link href='/setting'>SETTINGS</Link></li>
                     <li className={activetedNavLink == 4 ?`${styles.navLink} ${styles.active}` : `${styles.navLink}`}><Link href='/about'>ABOUT US</Link></li>
                     <li className={activetedNavLink == 5 ?`${styles.navLink} ${styles.active}` : `${styles.navLink}`}><Link href='/contact'>CONTACT US</Link></li>

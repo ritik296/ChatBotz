@@ -3,7 +3,7 @@ import { FaRegUser } from 'react-icons/fa';
 
 import Navbar from "./component/Navbar";
 
-const profile = () => {
+const Profile = () => {
   const [name, setName] = useState("Name");
   const [contact, setContact] = useState("Contact");
   const [email, setEmail] = useState("Email");
@@ -17,7 +17,6 @@ const profile = () => {
 
   const [token, setToken] = useState("");
   const [profileData, setProfileData] = useState(null);
-  const [profileUpdate, setProfileUpdate] = useState(0);
 
   useEffect(() => {
     fetchUserDetail();
@@ -230,4 +229,4 @@ const profile = () => {
   )
 }
 
-export default profile
+export default Profile
