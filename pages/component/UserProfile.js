@@ -101,125 +101,123 @@ const UserProfile = (props) => {
     }
 
     return (
-        <>
-            <div className={styles.container}>
-                <div className={styles.avatarContainer}>
-                    <div className={styles.avatarImg}>
-                        <img src={!profileData["image-url"] ? "/avatar.png" : profileData["image-url"]} alt="" className={styles.avatarImgCon} />
+        <div className={styles.container}>
+            <div className={styles.avatarContainer}>
+                <div className={styles.avatarImg}>
+                    <img src={!profileData["image-url"] ? "/avatar.png" : profileData["image-url"]} alt="" className={styles.avatarImgCon} />
+                </div>
+                <div className={styles.editAvatar}>
+                    <HiPencil size={15}/>
+                </div>
+            </div>
+            <div className={styles.nameContainer}>
+                <h1 className={styles.name}>{profileData.name}</h1>
+            </div>
+            <div className={styles.communicationWaysContainer}>
+                <div className={styles.commBtnContiner}>
+                    <button className={styles.commBtn}><BiPhoneCall size={25} /></button>
+                </div>
+                <div className={styles.commBtnContiner}>
+                    <button className={styles.commBtn} style={{color : followColor}} onClick={() => sendFollowRequest()}><AiTwotoneHeart size={25} /></button>
+                </div>
+                <div className={styles.commBtnContiner}>
+                    <button className={styles.commBtn}><GoMail size={25} /></button>
+                </div>
+                <div className={styles.commBtnContiner}>
+                    <button className={styles.commBtn}><BsThreeDots size={25} /></button>
+                </div>
+            </div>
+            <div className={styles.lineBreak}></div>
+            <div className={styles.infoContainer}>
+                <div className={styles.infoKeys}>
+                    <div className={styles.key}>
+                        <div className={styles.keyIcon}><FaToolbox/></div>
+                        <div className={styles.keyText}>Company</div>
                     </div>
-                    <div className={styles.editAvatar}>
-                        <HiPencil size={15}/>
+                    <div className={styles.key}>
+                        <div className={styles.keyIcon}><FaUserAlt/></div>
+                        <div className={styles.keyText}>Role</div>
+                    </div>
+                    <div className={styles.key}>
+                        <div className={styles.keyIcon}><BsTelephoneFill/></div>
+                        <div className={styles.keyText}>Phone</div>
+                    </div>
+                    <div className={styles.key}>
+                        <div className={styles.keyIcon}><MdAlternateEmail/></div>
+                        <div className={styles.keyText}>Email</div>
+                    </div>
+                    <div className={styles.key}>
+                        <div className={styles.keyIcon}><TiThMenu/></div>
+                        <div className={styles.keyText}>Tags</div>
                     </div>
                 </div>
-                <div className={styles.nameContainer}>
-                    <h1 className={styles.name}>{profileData.name}</h1>
+                <div className={styles.infoValues}>
+                        <div className={styles.value}>{!profileData["personal-detail"]["company"] ? "Set a Company... " : profileData["personal-detail"]["company"]}</div>
+                        <div className={styles.value}>{!profileData["personal-detail"]["role"] ? "Set a Role... " : profileData["personal-detail"]["role"]}</div>
+                        <div className={styles.value}>{!profileData["personal-detail"]["phone"] ? profileData.contact : profileData["personal-detail"]["phone"]}</div>
+                        <div className={styles.value}>{!profileData["personal-detail"]["emails"] ? profileData.email : profileData["personal-detail"]["emails"]}</div>
+                        {/* <div className={styles.value}>Set a Role...</div>
+                        <div className={styles.value}>Set a Phone...</div>
+                        <div className={styles.value}>Set a Email...</div> */}
+                        <div className={`${styles.value} ${styles.tagValues}`}>
+                            {profileData["personal-detail"]["tags"].map((tag) => {
+                                return (
+                                    <div className={styles.tag} key={tag}>
+                                        <div className={styles.tagDot}></div>
+                                        <div className={styles.tagName}>{tag}</div>
+                                    </div>
+                                );
+                            })}
+                        </div>
                 </div>
-                <div className={styles.communicationWaysContainer}>
-                    <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn}><BiPhoneCall size={25} /></button>
-                    </div>
-                    <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn} style={{color : followColor}} onClick={() => sendFollowRequest()}><AiTwotoneHeart size={25} /></button>
-                    </div>
-                    <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn}><GoMail size={25} /></button>
-                    </div>
-                    <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn}><BsThreeDots size={25} /></button>
-                    </div>
-                </div>
-                <div className={styles.lineBreak}></div>
-                <div className={styles.infoContainer}>
-                    <div className={styles.infoKeys}>
-                        <div className={styles.key}>
-                            <div className={styles.keyIcon}><FaToolbox/></div>
-                            <div className={styles.keyText}>Company</div>
-                        </div>
-                        <div className={styles.key}>
-                            <div className={styles.keyIcon}><FaUserAlt/></div>
-                            <div className={styles.keyText}>Role</div>
-                        </div>
-                        <div className={styles.key}>
-                            <div className={styles.keyIcon}><BsTelephoneFill/></div>
-                            <div className={styles.keyText}>Phone</div>
-                        </div>
-                        <div className={styles.key}>
-                            <div className={styles.keyIcon}><MdAlternateEmail/></div>
-                            <div className={styles.keyText}>Email</div>
-                        </div>
-                        <div className={styles.key}>
-                            <div className={styles.keyIcon}><TiThMenu/></div>
-                            <div className={styles.keyText}>Tags</div>
-                        </div>
-                    </div>
-                    <div className={styles.infoValues}>
-                            <div className={styles.value}>{!profileData["personal-detail"]["company"] ? "Set a Company... " : profileData["personal-detail"]["company"]}</div>
-                            <div className={styles.value}>{!profileData["personal-detail"]["role"] ? "Set a Role... " : profileData["personal-detail"]["role"]}</div>
-                            <div className={styles.value}>{!profileData["personal-detail"]["phone"] ? profileData.contact : profileData["personal-detail"]["phone"]}</div>
-                            <div className={styles.value}>{!profileData["personal-detail"]["emails"] ? profileData.email : profileData["personal-detail"]["emails"]}</div>
-                            {/* <div className={styles.value}>Set a Role...</div>
-                            <div className={styles.value}>Set a Phone...</div>
-                            <div className={styles.value}>Set a Email...</div> */}
-                            <div className={`${styles.value} ${styles.tagValues}`}>
-                                {profileData["personal-detail"]["tags"].map((tag) => {
-                                    return (
-                                        <div className={styles.tag} key={tag}>
-                                            <div className={styles.tagDot}></div>
-                                            <div className={styles.tagName}>{tag}</div>
-                                        </div>
-                                    );
-                                })}
+            </div>
+            <div className={styles.commentLineBreak}></div>
+            <div className={styles.commentContainer}>
+                {comments.map((com) => {
+                    return (
+                        <div className={styles.commentBox} key={com["time"]}>
+                            <div className={styles.commentAvatar}>
+                                <img src={!com["sender-image"] ? "/avatar.png" : com["sender-image"]} alt="" width={50} height={50}/>
                             </div>
-                    </div>
-                </div>
-                <div className={styles.commentLineBreak}></div>
-                <div className={styles.commentContainer}>
-                    {comments.map((com) => {
-                        return (
-                            <div className={styles.commentBox} key={com["time"]}>
-                                <div className={styles.commentAvatar}>
-                                    <img src={!com["sender-image"] ? "/avatar.png" : com["sender-image"]} alt="" width={50} height={50}/>
-                                </div>
-                                <div className={styles.commentContent}>
-                                    <div className={styles.commentHead}>
-                                        <div className={styles.commentName}>
-                                            <h2>{com["sender-name"]}</h2>
-                                        </div>
-                                        <div className={styles.commentTime}>
-                                            <p>{new Date(com["time"]).toTimeString().slice(0,5)}</p>
-                                        </div>
+                            <div className={styles.commentContent}>
+                                <div className={styles.commentHead}>
+                                    <div className={styles.commentName}>
+                                        <h2>{com["sender-name"]}</h2>
                                     </div>
-                                    <div className={styles.commentBody}>
-                                        <p>{com.text}<span className={styles.paragraphOverFlow}> &nbsp;More...</span></p>
+                                    <div className={styles.commentTime}>
+                                        <p>{new Date(com["time"]).toTimeString().slice(0,5)}</p>
                                     </div>
                                 </div>
-                            </div>            
-                        );
-                    })}
-                </div>
+                                <div className={styles.commentBody}>
+                                    <p>{com.text}<span className={styles.paragraphOverFlow}> &nbsp;More...</span></p>
+                                </div>
+                            </div>
+                        </div>            
+                    );
+                })}
+            </div>
 
-                <div className={styles.sendCommentContainer}>
-                    <div className={styles.sendCommentBox}>
-                        <div className={styles.commentInput}>
-                            <input type="text" value={text} placeholder="Write comment here..." onChange={(e) => setText(e.target.value)}/>
-                        </div>
-                        <div className={styles.functionlity}>
-                            <button className={styles.btnBox} style={{background : protection? "rebeccapurple": "white", color : protection? "white": "grey"}} onClick={() => protection ? setProtection(false) : setProtection(true)}><TbCircleCheck size={24}/></button>
-                            <button className={styles.btnBox}><MdAlternateEmail size={24} onClick={() => !attachedEmail ? setAttachedEmail("ritikparihar629@gmail.com") : null}/></button>
-                            <button className={styles.btnBox}><AiOutlinePaperClip size={24}/></button>
-                            <button className={styles.btnBox}><HiOutlineEmojiHappy size={24}/></button>
-                            <button className={styles.commentSend} onClick={() => sendComment()}>
-                                <BiSend size={24} />
-                            </button>
-                        </div>
+            <div className={styles.sendCommentContainer}>
+                <div className={styles.sendCommentBox}>
+                    <div className={styles.commentInput}>
+                        <input type="text" value={text} placeholder="Write comment here..." onChange={(e) => setText(e.target.value)}/>
+                    </div>
+                    <div className={styles.functionlity}>
+                        <button className={styles.btnBox} style={{background : protection? "rebeccapurple": "white", color : protection? "white": "grey"}} onClick={() => protection ? setProtection(false) : setProtection(true)}><TbCircleCheck size={24}/></button>
+                        <button className={styles.btnBox}><MdAlternateEmail size={24} onClick={() => !attachedEmail ? setAttachedEmail("ritikparihar629@gmail.com") : null}/></button>
+                        <button className={styles.btnBox}><AiOutlinePaperClip size={24}/></button>
+                        <button className={styles.btnBox}><HiOutlineEmojiHappy size={24}/></button>
+                        <button className={styles.commentSend} onClick={() => sendComment()}>
+                            <BiSend size={24} />
+                        </button>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
-export default UserProfile;
+export default UserProfile
 
 //     "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
 //     "reciver-token": "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
