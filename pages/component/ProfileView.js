@@ -68,7 +68,7 @@ const ProfileView = (props) => {
     }
 
     async function sendFollowRequest() {
-        let res = await fetch("http://localhost:3000/api/send-follow-request", {
+        let res = await fetch("/api/send-follow-request", {
             method: "POST",
             body: JSON.stringify({
                 "follower-token": props.yourToken,
@@ -89,9 +89,7 @@ const ProfileView = (props) => {
     }
 
     async function checkFollowStatus() {
-        let res = await fetch(
-            "http://localhost:3000/api/check-follower-status",
-            {
+        let res = await fetch("/api/check-follower-status", {
                 method: "POST",
                 body: JSON.stringify({
                     "sender-token": props.yourToken,
@@ -235,88 +233,88 @@ const ProfileView = (props) => {
     );
 };
 
-// ProfileView.defaultProps = {
-//     data: {
-//         "name": "Ritik Parihar",
-//         "email": "ritikparihar629@gmail.com",
-//         "image-url": "",
-//         "follower-count": 1,
-//         "profile-type": "private",
-//         "personal-detail": {
-//             "company": "",
-//             "role": "",
-//             "phone": ["8602487739"],
-//             "emails": ["ritikparihar629@gmail.com"],
-//             "tags": ["tags-1", "tags-2", "tags-3"]
-//         },
-//         "comments": {
-//             "total": 6,
-//             "comment-list": [
-//                 {
-//                     "sender-name": "Kavita Parihar",
-//                     "time": "2022-10-12T14:11:37.916Z",
-//                     "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
-//                     "text": "dadas",
-//                     "protection": "private",
-//                     "file": "",
-//                     "attached-email": "",
-//                     "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
-//                 },
-//                 {
-//                     "sender-name": "Kavita Parihar",
-//                     "time": "2022-10-12T14:10:42.310Z",
-//                     "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
-//                     "text": "lill",
-//                     "protection": "public",
-//                     "file": "",
-//                     "attached-email": "",
-//                     "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
-//                 },
-//                 {
-//                     "sender-name": "Kavita Parihar",
-//                     "time": "2022-10-12T12:10:01.221Z",
-//                     "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
-//                     "text": "kail",
-//                     "protection": "public",
-//                     "file": "",
-//                     "attached-email": "",
-//                     "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
-//                 },
-//                 {
-//                     "sender-name": "Kavita Parihar",
-//                     "time": "2022-10-12T12:09:21.840Z",
-//                     "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
-//                     "text": "jivan",
-//                     "protection": "private",
-//                     "file": "",
-//                     "attached-email": "",
-//                     "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
-//                 },
-//                 {
-//                     "sender-name": "Kavita Parihar",
-//                     "time": "2022-10-11T18:45:11.513Z",
-//                     "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
-//                     "text": "test 2",
-//                     "protection": "public",
-//                     "file": "",
-//                     "attached-email": "",
-//                     "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
-//                 },
-//                 {
-//                     "sender-name": "Kavita Parihar",
-//                     "time": "2022-10-11T18:42:17.665Z",
-//                     "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
-//                     "text": "here for testing",
-//                     "protection": "public",
-//                     "file": "",
-//                     "attached-email": "",
-//                     "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
-//                 }
-//             ]
-//         },
-//         "contact": "8602487739"
-//     }
-// }
+ProfileView.defaultProps = {
+    data: {
+        "name": "Ritik Parihar",
+        "email": "ritikparihar629@gmail.com",
+        "image-url": "",
+        "follower-count": 1,
+        "profile-type": "private",
+        "personal-detail": {
+            "company": "",
+            "role": "",
+            "phone": ["8602487739"],
+            "emails": ["ritikparihar629@gmail.com"],
+            "tags": ["tags-1", "tags-2", "tags-3"]
+        },
+        "comments": {
+            "total": 6,
+            "comment-list": [
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-12T14:11:37.916Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "dadas",
+                    "protection": "private",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-12T14:10:42.310Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "lill",
+                    "protection": "public",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-12T12:10:01.221Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "kail",
+                    "protection": "public",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-12T12:09:21.840Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "jivan",
+                    "protection": "private",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-11T18:45:11.513Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "test 2",
+                    "protection": "public",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-11T18:42:17.665Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "here for testing",
+                    "protection": "public",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                }
+            ]
+        },
+        "contact": "8602487739"
+    }
+}
     
 
 export default ProfileView;
