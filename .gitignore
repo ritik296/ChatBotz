@@ -10,6 +10,7 @@ UserProfile.js
 .env
 
 utils
+yarn.lock
 
 # testing
 /coverage
