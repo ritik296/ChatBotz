@@ -28,44 +28,44 @@ const ProfileView = (props) => {
         setComments(props.data["comments"]["comment-list"]);
     }, []);
 
-    // async function sendComment() {
-    //     let time = new Date();
-    //     let res = await fetch("/api/send-comment", {
-    //         method: "POST",
-    //         body: JSON.stringify({
-    //             "reciver-token": props.otherToken,
-    //             "sender-token": props.yourToken,
-    //             time: time,
-    //             text: text,
-    //             protection: !protection ? "public" : "private",
-    //             file: "",
-    //             "attached-email": attachedEmail,
-    //         }),
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8",
-    //         },
-    //     });
-    //     if (res.status === 200) {
-    //         let data = await res.json();
-    //         setComments((comments) => [
-    //             {
-    //                 "sender-name": "Name",
-    //                 time: time,
-    //                 "sender-image": "",
-    //                 text: text,
-    //                 protection: !protection ? "public" : "private",
-    //                 file: "",
-    //                 "attached-email": attachedEmail,
-    //                 "sender-token": props.yourToken,
-    //             },
-    //             ...comments,
-    //         ]);
-    //         // setMessages((messages) => [...messages, mes]);
-    //         setText("");
-    //         setProtection(false);
-    //         setAttachedEmail();
-    //     }
-    // }
+    async function sendComment() {
+        let time = new Date();
+        let res = await fetch("/api/send-comment", {
+            method: "POST",
+            body: JSON.stringify({
+                "reciver-token": props.otherToken,
+                "sender-token": props.yourToken,
+                time: time,
+                text: text,
+                protection: !protection ? "public" : "private",
+                file: "",
+                "attached-email": attachedEmail,
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        });
+        if (res.status === 200) {
+            let data = await res.json();
+            setComments((comments) => [
+                {
+                    "sender-name": "Name",
+                    time: time,
+                    "sender-image": "",
+                    text: text,
+                    protection: !protection ? "public" : "private",
+                    file: "",
+                    "attached-email": attachedEmail,
+                    "sender-token": props.yourToken,
+                },
+                ...comments,
+            ]);
+            // setMessages((messages) => [...messages, mes]);
+            setText("");
+            setProtection(false);
+            setAttachedEmail();
+        }
+    }
 
     async function sendFollowRequest() {
         let res = await fetch("http://localhost:3000/api/send-follow-request", {
