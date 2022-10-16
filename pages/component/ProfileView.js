@@ -15,14 +15,14 @@ const ProfileView = (props) => {
     const [text, setText] = useState("");
     const [protection, setProtection] = useState(false);
     const [attachedEmail, setAttachedEmail] = useState("");
-    // const [followToggle, setFollowToggle] = useState(false);
+    const [followToggle, setFollowToggle] = useState(false);
     const [comments, setComments] = useState([]);
     const [followColor, setFollowColor] = useState("black");
 
-    // useEffect(() => {
-    //     console.log(props.data);
-    //     checkFollowStatus();
-    // }, []);
+    useEffect(() => {
+        console.log(props.data);
+        checkFollowStatus();
+    }, []);
 
     useEffect(() => {
         setComments(props.data["comments"]["comment-list"]);
@@ -88,33 +88,33 @@ const ProfileView = (props) => {
     //     }
     // }
 
-    // async function checkFollowStatus() {
-    //     let res = await fetch(
-    //         "http://localhost:3000/api/check-follower-status",
-    //         {
-    //             method: "POST",
-    //             body: JSON.stringify({
-    //                 "sender-token": props.yourToken,
-    //                 "requester-token": props.otherToken,
-    //             }),
-    //             headers: {
-    //                 "Content-type": "application/json; charset=UTF-8",
-    //             },
-    //         }
-    //     );
-    //     if (res.status === 200) {
-    //         let data = await res.json();
-    //         setFollowToggle(data["ok"]);
+    async function checkFollowStatus() {
+        let res = await fetch(
+            "http://localhost:3000/api/check-follower-status",
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    "sender-token": props.yourToken,
+                    "requester-token": props.otherToken,
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                },
+            }
+        );
+        if (res.status === 200) {
+            let data = await res.json();
+            setFollowToggle(data["ok"]);
 
-    //         if (data["ok"] == "true") {
-    //             setFollowColor("red");
-    //         } else if (data["ok"] == "pendding") {
-    //             setFollowColor("green");
-    //         } else {
-    //             setFollowColor("black");
-    //         }
-    //     }
-    // }
+            if (data["ok"] == "true") {
+                setFollowColor("red");
+            } else if (data["ok"] == "pendding") {
+                setFollowColor("green");
+            } else {
+                setFollowColor("black");
+            }
+        }
+    }
 
     return (
         <div>
