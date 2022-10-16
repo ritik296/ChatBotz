@@ -12,14 +12,15 @@ import { TbCircleCheck } from "react-icons/tb";
 import { useState, useEffect } from "react";
 
 const ProfileView = (props) => {
-    const [text, setText] = useState(null);
+    const [text, setText] = useState("");
     const [protection, setProtection] = useState(false);
-    const [attachedEmail, setAttachedEmail] = useState(null);
+    const [attachedEmail, setAttachedEmail] = useState("");
     const [followToggle, setFollowToggle] = useState(false);
     const [comments, setComments] = useState([]);
     const [followColor, setFollowColor] = useState("black");
 
     useEffect(() => {
+        console.log(props.data);
         checkFollowStatus();
     }, []);
 
