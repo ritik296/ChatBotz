@@ -20,7 +20,7 @@ const ProfileView = (props) => {
     const [followColor, setFollowColor] = useState("black");
 
     useEffect(() => {
-        console.log(props.data);
+        // console.log(props.data);
         checkFollowStatus();
     }, []);
 
