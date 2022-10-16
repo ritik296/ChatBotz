@@ -15,27 +15,67 @@ export default function handler(req, res) {
                 let pass = validPassword(cred.password);
                 let token = tokenGenerator();
 
-                if (data[cred.contact]["name"]) {
+                if (data[cred.contact]) {
+                    if(data[cred.contact]["name"]){
+                        console.log("User already exist");
+                        res.status(200).json({ Login: "User already exist" });
+                    } else if (name && contact && dob && pass && !data[cred.contact]["name"]) {
+                        data[cred.contact]["name"] = cred.name;
+                        data[cred.contact]["dob"] = cred.dob;
+                        data[cred.contact]["password"] = cred.password;
+
+                        let tok = data[cred.contact]["token"];
+    
+                        let newd = JSON.stringify(data);
+    
+                        fs.writeFile("DataBase/User.json", newd, (err) => {
+                            // Error checking
+                            if (err) throw err;
+                            console.log("New user added update");
+                            fs.readFile("DataBase/ContactList.json", 'utf-8', (err, conList) => {
+                                if (err) throw err;
+                                else {
+                                    conList = JSON.parse(conList);
+                                    if(!conList[tok]) {
+                                        let obj = {
+                                            [tok]: []
+                                        };
+                                        let z = Object.assign(conList, obj);
+                                        let par = JSON.stringify(z);
+
+                                        fs.writeFile("DataBase/ContactList.json", par, (err) => {
+                                            if (err) throw err;
+                                            else{
+                                                console.log("Added in contact list");
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                            console.log("New User added");
+                        });
+                        // res.status(200).json(obj);
+                        res.status(200).json({"token": data[cred.contact]["token"]});
+                    }
                     // console.log(cred.pp)
-                    console.log("User already exist");
-                    res.status(200).json({ Login: "User already exist" });
-                } else if (name && contact && dob && pass && !data[cred.contact]["name"]) {
+                } 
+                // else if (name && contact && dob && pass && !data[cred.contact]["name"]) {
 
-                    data[cred.contact]["name"] = cred.name;
-                    data[cred.contact]["dob"] = cred.dob;
-                    data[cred.contact]["password"] = cred.password;
+                //     data[cred.contact]["name"] = cred.name;
+                //     data[cred.contact]["dob"] = cred.dob;
+                //     data[cred.contact]["password"] = cred.password;
 
-                    let newd = JSON.stringify(data);
+                //     let newd = JSON.stringify(data);
 
-                    fs.writeFile("DataBase/User.json", newd, (err) => {
-                        // Error checking
-                        if (err) throw err;
-                        console.log("New User added");
-                    });
-                    // res.status(200).json(obj);
-                    res.status(200).json({"token": data[cred.contact]["token"]});
+                //     fs.writeFile("DataBase/User.json", newd, (err) => {
+                //         // Error checking
+                //         if (err) throw err;
+                //         console.log("New User added");
+                //     });
+                //     // res.status(200).json(obj);
+                //     res.status(200).json({"token": data[cred.contact]["token"]});
 
-                }
+                // }
                 else if(name && contact && dob && pass) {
                     var token1 = tokenGenerator();
                    
@@ -58,6 +98,27 @@ export default function handler(req, res) {
                     fs.writeFile("DataBase/User.json", newd, (err) => {
                         // Error checking
                         if (err) throw err;
+                        console.log("New User added");
+                        fs.readFile("DataBase/ContactList.json", 'utf-8', (err, conList) => {
+                            if (err) throw err;
+                            else {
+                                conList = JSON.parse(conList);
+                                if(!conList[token1]) {
+                                    let obj = {
+                                        [token1]: []
+                                    };
+                                    let z = Object.assign(conList, obj);
+                                    let par = JSON.stringify(z);
+
+                                    fs.writeFile("DataBase/ContactList.json", par, (err) => {
+                                        if (err) throw err;
+                                        else{
+                                            console.log("Added in contact list");
+                                        }
+                                    });
+                                }
+                            }
+                        });
                         console.log("New User added");
                     });
                     // res.status(200).json(obj);

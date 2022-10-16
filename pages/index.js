@@ -7,7 +7,6 @@ import ContactCard from "./component/ContactCard";
 import MessageSend from "./component/MessageSend";
 import MessageCard from "./component/MessageCard";
 import SearchAndAddContact from "./component/SearchAndAddContact";
-// import UserProfile from "./component/UserProfile";
 import ProfileView from "./component/ProfileView";
 
 import stylesLayout from "../styles/Layout.module.css";
@@ -21,7 +20,6 @@ import { v4 as uuidv4 } from "uuid";
 import { io } from "socket.io-client";
 
 import InfiniteScroll from "react-infinite-scroll-component";
-// import InfiniteScrollReverse from "react-infinite-scroll-reverse";
 
 export default function Home() {
     let router = useRouter();
