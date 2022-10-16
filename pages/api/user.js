@@ -46,16 +46,36 @@ export default function handler(req, res) {
                                         fs.writeFile("DataBase/ContactList.json", par, (err) => {
                                             if (err) throw err;
                                             else{
-                                                console.log("Added in contact list");
+                                                console.log("Contact list structure defined");
                                             }
                                         });
                                     }
                                 }
                             });
-                            console.log("New User added");
+
+                            fs.readFile("DataBase/Chat.json", 'utf-8', (err, chat) => {
+                                if (err) throw err;
+                                else {
+                                    chat = JSON.parse(chat);
+                                    if(!chat[tok]) {
+                                        let obj = {
+                                            [tok]: {}
+                                        };
+                                        let z = Object.assign(chat, obj);
+                                        let par = JSON.stringify(z);
+
+                                        fs.writeFile("DataBase/Chat.json", par, (err) => {
+                                            if (err) throw err;
+                                            else{
+                                                console.log("Chat list structure defined");
+                                            }
+                                        });
+                                    }
+                                }
+                            });
                         });
                         // res.status(200).json(obj);
-                        res.status(200).json({"token": data[cred.contact]["token"]});
+                        res.status(200).json({"token": tok});
                     }
                     // console.log(cred.pp)
                 } 
@@ -113,13 +133,33 @@ export default function handler(req, res) {
                                     fs.writeFile("DataBase/ContactList.json", par, (err) => {
                                         if (err) throw err;
                                         else{
-                                            console.log("Added in contact list");
+                                            console.log("Contact list structure defined");
                                         }
                                     });
                                 }
                             }
                         });
-                        console.log("New User added");
+
+                        fs.readFile("DataBase/Chat.json", 'utf-8', (err, chat) => {
+                            if (err) throw err;
+                            else {
+                                chat = JSON.parse(chat);
+                                if(!chat[token1]) {
+                                    let obj = {
+                                        [token1]: {}
+                                    };
+                                    let z = Object.assign(chat, obj);
+                                    let par = JSON.stringify(z);
+
+                                    fs.writeFile("DataBase/Chat.json", par, (err) => {
+                                        if (err) throw err;
+                                        else{
+                                            console.log("Chat list structure defined");
+                                        }
+                                    });
+                                }
+                            }
+                        });
                     });
                     // res.status(200).json(obj);
                     res.status(200).json({"token": token1});

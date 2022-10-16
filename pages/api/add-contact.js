@@ -90,7 +90,9 @@ export default async function handler(req, res) {
                                 newContactDetails,
                                 (err) => {
                                     if (err) throw err;
-                                    console.log("Contact Added in contact-list");
+                                    console.log(
+                                        "Contact Added in contact-list"
+                                    );
                                     fs.readFile(
                                         `DataBase/Chat.json`,
                                         "utf-8",
@@ -145,15 +147,21 @@ export default async function handler(req, res) {
                                                 let newDetails =
                                                     JSON.stringify(data1);
 
-                                                    // console.log("second");
-                                                    // console.log(data1[userToken]);
-                                                    // console.log(data1[senderToken]);
-                                                    fs.writeFile("DataBase/Chat.json", newDetails, (err) => {
+                                                // console.log("second");
+                                                // console.log(data1[userToken]);
+                                                // console.log(data1[senderToken]);
+                                                fs.writeFile(
+                                                    "DataBase/Chat.json",
+                                                    newDetails,
+                                                    (err) => {
                                                         if (err) throw err;
-                                                        console.log("Added In chat");
-                                                    })
-                                                }
-                                                // res.status(200).json({"your view": data1[userToken], "other view": data1[senderToken]});
+                                                        console.log(
+                                                            "Added In chat"
+                                                        );
+                                                    }
+                                                );
+                                            }
+                                            // res.status(200).json({"your view": data1[userToken], "other view": data1[senderToken]});
                                         }
                                     );
                                 }
