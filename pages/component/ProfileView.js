@@ -67,26 +67,26 @@ const ProfileView = (props) => {
     //     }
     // }
 
-    // async function sendFollowRequest() {
-    //     let res = await fetch("http://localhost:3000/api/send-follow-request", {
-    //         method: "POST",
-    //         body: JSON.stringify({
-    //             "follower-token": props.yourToken,
-    //             "followed-token": props.otherToken,
-    //         }),
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8",
-    //         },
-    //     });
-    //     if (res.status === 200) {
-    //         let data = await res.json();
-    //         if (data["ok"] == "request sended") {
-    //             setFollowColor("green");
-    //         } else if (data["ok"] == "followed") {
-    //             setFollowColor("red");
-    //         }
-    //     }
-    // }
+    async function sendFollowRequest() {
+        let res = await fetch("http://localhost:3000/api/send-follow-request", {
+            method: "POST",
+            body: JSON.stringify({
+                "follower-token": props.yourToken,
+                "followed-token": props.otherToken,
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        });
+        if (res.status === 200) {
+            let data = await res.json();
+            if (data["ok"] == "request sended") {
+                setFollowColor("green");
+            } else if (data["ok"] == "followed") {
+                setFollowColor("red");
+            }
+        }
+    }
 
     async function checkFollowStatus() {
         let res = await fetch(
