@@ -15,7 +15,7 @@ const ProfileView = (props) => {
     const [text, setText] = useState("");
     const [protection, setProtection] = useState(false);
     const [attachedEmail, setAttachedEmail] = useState("");
-    const [followToggle, setFollowToggle] = useState(false);
+    // const [followToggle, setFollowToggle] = useState(false);
     const [comments, setComments] = useState([]);
     const [followColor, setFollowColor] = useState("black");
 
