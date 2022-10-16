@@ -19,102 +19,102 @@ const ProfileView = (props) => {
     const [comments, setComments] = useState([]);
     const [followColor, setFollowColor] = useState("black");
 
-    useEffect(() => {
-        console.log(props.data);
-        checkFollowStatus();
-    }, []);
+    // useEffect(() => {
+    //     console.log(props.data);
+    //     checkFollowStatus();
+    // }, []);
 
     useEffect(() => {
         setComments(props.data["comments"]["comment-list"]);
     }, []);
 
-    async function sendComment() {
-        let time = new Date();
-        let res = await fetch("/api/send-comment", {
-            method: "POST",
-            body: JSON.stringify({
-                "reciver-token": props.otherToken,
-                "sender-token": props.yourToken,
-                time: time,
-                text: text,
-                protection: !protection ? "public" : "private",
-                file: "",
-                "attached-email": attachedEmail,
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-        });
-        if (res.status === 200) {
-            let data = await res.json();
-            setComments((comments) => [
-                {
-                    "sender-name": "Name",
-                    time: time,
-                    "sender-image": "",
-                    text: text,
-                    protection: !protection ? "public" : "private",
-                    file: "",
-                    "attached-email": attachedEmail,
-                    "sender-token": props.yourToken,
-                },
-                ...comments,
-            ]);
-            // setMessages((messages) => [...messages, mes]);
-            setText("");
-            setProtection(false);
-            setAttachedEmail();
-        }
-    }
+    // async function sendComment() {
+    //     let time = new Date();
+    //     let res = await fetch("/api/send-comment", {
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             "reciver-token": props.otherToken,
+    //             "sender-token": props.yourToken,
+    //             time: time,
+    //             text: text,
+    //             protection: !protection ? "public" : "private",
+    //             file: "",
+    //             "attached-email": attachedEmail,
+    //         }),
+    //         headers: {
+    //             "Content-type": "application/json; charset=UTF-8",
+    //         },
+    //     });
+    //     if (res.status === 200) {
+    //         let data = await res.json();
+    //         setComments((comments) => [
+    //             {
+    //                 "sender-name": "Name",
+    //                 time: time,
+    //                 "sender-image": "",
+    //                 text: text,
+    //                 protection: !protection ? "public" : "private",
+    //                 file: "",
+    //                 "attached-email": attachedEmail,
+    //                 "sender-token": props.yourToken,
+    //             },
+    //             ...comments,
+    //         ]);
+    //         // setMessages((messages) => [...messages, mes]);
+    //         setText("");
+    //         setProtection(false);
+    //         setAttachedEmail();
+    //     }
+    // }
 
-    async function sendFollowRequest() {
-        let res = await fetch("http://localhost:3000/api/send-follow-request", {
-            method: "POST",
-            body: JSON.stringify({
-                "follower-token": props.yourToken,
-                "followed-token": props.otherToken,
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-        });
-        if (res.status === 200) {
-            let data = await res.json();
-            if (data["ok"] == "request sended") {
-                setFollowColor("green");
-            } else if (data["ok"] == "followed") {
-                setFollowColor("red");
-            }
-        }
-    }
+    // async function sendFollowRequest() {
+    //     let res = await fetch("http://localhost:3000/api/send-follow-request", {
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             "follower-token": props.yourToken,
+    //             "followed-token": props.otherToken,
+    //         }),
+    //         headers: {
+    //             "Content-type": "application/json; charset=UTF-8",
+    //         },
+    //     });
+    //     if (res.status === 200) {
+    //         let data = await res.json();
+    //         if (data["ok"] == "request sended") {
+    //             setFollowColor("green");
+    //         } else if (data["ok"] == "followed") {
+    //             setFollowColor("red");
+    //         }
+    //     }
+    // }
 
-    async function checkFollowStatus() {
-        let res = await fetch(
-            "http://localhost:3000/api/check-follower-status",
-            {
-                method: "POST",
-                body: JSON.stringify({
-                    "sender-token": props.yourToken,
-                    "requester-token": props.otherToken,
-                }),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                },
-            }
-        );
-        if (res.status === 200) {
-            let data = await res.json();
-            setFollowToggle(data["ok"]);
+    // async function checkFollowStatus() {
+    //     let res = await fetch(
+    //         "http://localhost:3000/api/check-follower-status",
+    //         {
+    //             method: "POST",
+    //             body: JSON.stringify({
+    //                 "sender-token": props.yourToken,
+    //                 "requester-token": props.otherToken,
+    //             }),
+    //             headers: {
+    //                 "Content-type": "application/json; charset=UTF-8",
+    //             },
+    //         }
+    //     );
+    //     if (res.status === 200) {
+    //         let data = await res.json();
+    //         setFollowToggle(data["ok"]);
 
-            if (data["ok"] == "true") {
-                setFollowColor("red");
-            } else if (data["ok"] == "pendding") {
-                setFollowColor("green");
-            } else {
-                setFollowColor("black");
-            }
-        }
-    }
+    //         if (data["ok"] == "true") {
+    //             setFollowColor("red");
+    //         } else if (data["ok"] == "pendding") {
+    //             setFollowColor("green");
+    //         } else {
+    //             setFollowColor("black");
+    //         }
+    //     }
+    // }
 
     return (
         <div>
@@ -234,5 +234,89 @@ const ProfileView = (props) => {
         </div>
     );
 };
+
+ProfileView.defaultProps = {
+    data: {
+        "name": "Ritik Parihar",
+        "email": "ritikparihar629@gmail.com",
+        "image-url": "",
+        "follower-count": 1,
+        "profile-type": "private",
+        "personal-detail": {
+            "company": "",
+            "role": "",
+            "phone": ["8602487739"],
+            "emails": ["ritikparihar629@gmail.com"],
+            "tags": ["tags-1", "tags-2", "tags-3"]
+        },
+        "comments": {
+            "total": 6,
+            "comment-list": [
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-12T14:11:37.916Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "dadas",
+                    "protection": "private",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-12T14:10:42.310Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "lill",
+                    "protection": "public",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-12T12:10:01.221Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "kail",
+                    "protection": "public",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-12T12:09:21.840Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "jivan",
+                    "protection": "private",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-11T18:45:11.513Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "test 2",
+                    "protection": "public",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                },
+                {
+                    "sender-name": "Kavita Parihar",
+                    "time": "2022-10-11T18:42:17.665Z",
+                    "sender-image": "https://cdn-icons-png.flaticon.com/512/4140/4140048.png",
+                    "text": "here for testing",
+                    "protection": "public",
+                    "file": "",
+                    "attached-email": "",
+                    "sender-token": "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                }
+            ]
+        },
+        "contact": "8602487739"
+    }
+}
+    
 
 export default ProfileView;
