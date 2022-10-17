@@ -1,22 +1,22 @@
 .container{
-    padding: 20px 0 0 0;
+    padding: 1vw 0 0 0;
 }
 
 .avatarContainer{
     margin: 0 auto;
-    width: 100px;
-    height: 100px;
+    width: 5.2vw;
+    height: 5.2vw;
     display: flex;
     flex-direction: column-reverse;
 }
 
 .avatarImgCon{
-    box-shadow: 0 0 15px grey;
-    border-radius: 100px;
+    box-shadow: 0 0 .75vw grey;
+    border-radius: 100vw;
 }
 
 .avatarImg{
-    border-radius: 100px;
+    border-radius: 100vw;
 }
 
 .editAvatar{
@@ -39,7 +39,7 @@
 }
 
 .nameContainer{
-    margin-top: 14px;
+    margin-top: .7vw;
 }
 
 .name{
@@ -53,17 +53,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 1vw;
 }
 
 .commBtnContiner{
-    margin: 5px 15px;
+    margin: .25vw .75vw;
 }
 
 .commBtn{
     background: rgb(231, 231, 231);
-    padding: 8px;
-    border-radius: 100px;
+    padding: .48vw;
+    border-radius: 100vw;
     /* border: 2px solid white; */
     /* box-shadow: 0 0 10px grey; */
 
@@ -71,19 +71,19 @@
 
 .commBtn:hover{
     background: white;
-    box-shadow: 0 0 10px grey;
+    box-shadow: 0 0 .5vw grey;
 }
 
 .lineBreak{
-    height: 3px;
+    height: .15vw;
     background: grey;
-    margin: 15px 85px;
-    border-radius: 10px;
+    margin: .75vw 4.25vw;
+    border-radius: .5vw;
 }
 
 .infoContainer{
-    margin-top: -13px;
-    padding: 0px 25px;
+    margin-top: -.65vw;
+    padding: 0px 1.25vw;
     display: flex;
 }
 
@@ -95,7 +95,7 @@
 .key{
     display: flex;
     align-items: center;
-    margin: 15px 0;
+    margin: .75vw 0;
 }
 
 .keyIcon{
@@ -103,57 +103,56 @@
 }
 
 .keyText{
-    margin: 0 0 0 12px;
+    margin: 0 0 0 .6vw;
 }
 
 .infoValues{
     color: black;
-    margin: 0 0 0 23px;
+    margin: 0 0 0 1.15vw;
 }
 
 .value{
-    margin: 15px 0;
+    margin: .75vw 0;
 }
 
 .tagValues{
     display: flex;
     flex-wrap: wrap;
-    margin-left: -8px;
-    width: 262px;
+    margin-left: -.4vw;
 }
 
 .tag{
     background: rgb(212, 212, 212);
-    margin: -2px 8px 15px 8px;
+    margin: -.1vw .4vw .75vw .4vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2px 7px;
+    padding: .1vw .35vw;
     border-radius: 100px;
 }
 
 .tag:hover {
     background: white;
-    box-shadow: 0 0 8px grey;
+    box-shadow: 0 0 .4vw grey;
     cursor: pointer;
 }
 
 .tagDot{
-    width: 12px;
-    height: 12px;
+    width: .6vw;
+    height: .6vw;
     background: rgb(9, 177, 135);
     border-radius: 100px;
 }
 
 .tagName{
-    margin: 0 4px 0 4px;
+    margin: 0 .2vw ;
 }
 
 .commentLineBreak{
-    height: 3px;
+    height: .15vw;
     background: grey;
-    margin: -11px 85px 15px 85px;
-    border-radius: 10px;
+    margin: -.55vw 4.25vw .75vw 4.25vw;
+    border-radius: .5vw;
 }
 
 .commentContainer{
@@ -161,28 +160,30 @@
 }
 
 .commentBox{
-    margin: 13px 25px;
-    padding: 5px;
+    margin: .65vw 1.25vw;
+    padding: .25vw;
     /* border: 2px solid grey; */
-    border-radius: 10px;
+    border-radius: .5vw;
     display: flex;
     align-items: flex-start;
-    box-shadow: 0 0 5px grey;
+    box-shadow: 0 0 .25vw grey;
 }
 
 .commentAvatar{
-    width: 50px;
-    height: 50px;
-    margin-top: 5px;
+    width: 2.5vw;
+    height: 2.5vw;
+    margin-top: .25vw;
 }
 
 .commentAvatar img{
+    width: 2.5vw;
+    height: 2.5vw;
     border-radius: 100px;
-    box-shadow: 0 0 5px grey;
+    box-shadow: 0 0 .25vw grey;
 }
 
 .commentContent{
-    margin: 0 0 0 10px;
+    margin: 0 0 0 .5vw;
 }
 
 .commentHead {
@@ -193,51 +194,50 @@
 .commentName {
     font-weight: bold;
     font-size: large;
-    width: 252px;
 }
 
 .commentTime{
-    margin: 0 10px 0 auto;
+    margin: 0 .5vw 0 1vw;
     font-size: small;
+    float: right;
     font-weight: 700;
 }
 
 .commentBody{
-    font-size: 15px;
     color: black;
     font-weight: 500;
 }
 
 .paragraphOverFlow{
     color: rgb(9, 177, 135);
-    font-size: small;
+    font-size: smaller;
 }
 
 .sendCommentContainer {
     position: sticky;
     bottom: 0;
     background: white;
-    padding: 7px 0;
+    padding: .35vw 0;
 }
 
 .sendCommentBox{
-    margin: 0 25px;
-    border: 2px solid grey;
-    border-radius: 10px;
+    margin: 0 1.25vw;
+    border: .1vw solid grey;
+    border-radius: .5vw;
     background: white;
-    padding: 14px;
+    padding: .7vw;
     /* box-shadow: 0 0 10px grey; */
     /* margin-top: 100px; */
 }
 
 .commentInput{
-    margin: 0 0 0 5px;
+    margin: 0 0 0 .25vw;
 }
 
 .commentInput input{
     /* border: 1px solid black; */
     font-size: large;
-    width: 335px;
+    width: 16.75vw;
     font-weight: 500;
 }
 
@@ -248,17 +248,17 @@
 .functionlity {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: .5vw;
 }
 
 .btnBox {
     color: grey;
     border-radius: 100px;
-    padding: 5px;
+    padding: .25vw;
 }
 
 .btnBox:hover {
-    box-shadow: 0 0 10px grey;
+    box-shadow: 0 0 .5vw grey;
     color: black;
 }
 
@@ -267,15 +267,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 110px;
+    margin-left: 5.5vw;
     background: white;
     color: grey;
     border-radius: 100px;
-    padding: 5px;
-    width: 50px;
+    padding: .25vw;
+    width: 2.5vw;
 }
 
 .commentSend:hover {
-    box-shadow: 0 0 10px grey;
+    box-shadow: 0 0 .5vw grey;
     color: black;
 }

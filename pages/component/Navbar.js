@@ -77,11 +77,9 @@ const Navbar = (props) => {
                     <img
                         src="/logo.png"
                         alt="Logo of App"
-                        width={50}
-                        height={40}
                         />
                 </div>
-                <h2 className={styles.appName}>ChatBOT</h2>
+                <h2 className={styles.appName} style={{fontSize: "1.6vw"}}>ChatBOT</h2>
             </div>
             <div className={styles.navigationContainer}>
                 <ul>

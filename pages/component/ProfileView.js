@@ -130,35 +130,35 @@ const ProfileView = (props) => {
                 </div>
                 <div className={styles.communicationWaysContainer}>
                     <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn}><BiPhoneCall size={25} /></button>
+                        <button className={styles.commBtn}><BiPhoneCall size={"1.25vw"} /></button>
                     </div>
                     <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn} style={{color : followColor}} onClick={() => sendFollowRequest()}><AiTwotoneHeart size={25} /></button>
+                        <button className={styles.commBtn} style={{color : followColor}} onClick={() => sendFollowRequest()}><AiTwotoneHeart size={"1.25vw"} /></button>
                     </div>
                     <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn}><GoMail size={25} /></button>
+                        <button className={styles.commBtn}><GoMail size={"1.25vw"} /></button>
                     </div>
                     <div className={styles.commBtnContiner}>
-                        <button className={styles.commBtn}><BsThreeDots size={25} /></button>
+                        <button className={styles.commBtn}><BsThreeDots size={"1.25vw"} /></button>
                     </div>
                 </div>
                 <div className={styles.lineBreak}></div>
                 <div className={styles.infoContainer}>
                     <div className={styles.infoKeys}>
                         <div className={styles.key}>
-                            <div className={styles.keyIcon}><FaToolbox/></div>
+                            <div className={styles.keyIcon}><FaToolbox size={".9vw"}/></div>
                             <div className={styles.keyText}>Company</div>
                         </div>
                         <div className={styles.key}>
-                            <div className={styles.keyIcon}><FaUserAlt/></div>
+                            <div className={styles.keyIcon}><FaUserAlt size={".9vw"}/></div>
                             <div className={styles.keyText}>Role</div>
                         </div>
                         <div className={styles.key}>
-                            <div className={styles.keyIcon}><BsTelephoneFill/></div>
+                            <div className={styles.keyIcon}><BsTelephoneFill size={".9vw"}/></div>
                             <div className={styles.keyText}>Phone</div>
                         </div>
                         <div className={styles.key}>
-                            <div className={styles.keyIcon}><MdAlternateEmail/></div>
+                            <div className={styles.keyIcon}><MdAlternateEmail size={".9vw"}/></div>
                             <div className={styles.keyText}>Email</div>
                         </div>
                         <div className={styles.key}>

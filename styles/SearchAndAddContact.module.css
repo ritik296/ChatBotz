@@ -6,36 +6,35 @@
     top: 0;
     z-index: 50;
     background: white;
-    padding-bottom: 12px;
+    padding-bottom: .6vw;
+    /* border: 1px solid black; */
 }
 
 .search{
     display: flex;
     align-items: center;
-    width: fit-content;
-    height: 50px;
-    margin: 0px 10px 0 5px;
-    padding: 10px 10px;
-    box-shadow: 0 0 10px grey;
-    border-radius: 10px;
+    max-width: 16.4vw;
+    /* width: 2.5vw; */
+    height: 2.5vw;
+    margin: 0 .5vw 0 .1vw;
+    padding: .5vw .5vw;
+    box-shadow: 0 0 .5vw grey;
+    border-radius: .7vw;
+}
+
+.search img {
+    width: 1.5vw;
+    height: 1.5vw;
 }
 
 .searchInput{
     /* display: none; */
-    width: 245px;
-    height: 30px;
-    margin: 0 0 0 10px;
+    /* height: 143%; */
+    width: 13.5vw;
+    margin: 0 0 0 .25vw;
     border: none;
     font-size: large;
     /* transition: width 2s; */
-}
-
-.searchInputTransition{
-    width: 0px;
-}
-
-.searchInput:hover{
-    width: 245px;
 }
 
 .searchInput:focus{
@@ -46,29 +45,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 50px;
+    /* min-width: 2.5vw; */
     width: fit-content;
-    margin: 0px 5px;
-    padding: 10px 10px;
-    box-shadow: 0 0 10px grey;
-    border-radius: 10px;
+    min-height: 2.5vw;
+    /* max-height: 4vw; */
+    margin: 0px .1vw 0 .2vw;
+    padding: .5vw;
+    box-shadow: 0 0 .5vw grey;
+    border-radius: .7vw;
 }
 
 .contactInputs{
     /* display: none; */
-    width: 254px;
+    width: 13.5vw;
     /* width: 0px; */
     /* transition: width 2s; */
 }
 
 .contactInputs input:first-child{
-    margin-bottom: 5px;
+    margin-bottom: .2vw;
 }
 
 .contactInputs input{
-    width: 230px;
-    height: 30px;
-    margin: 0 0 0 10px;
+    /* width: 230px; */
+    /* height: 30px; */
+    /* margin: 0 0 0 3%; */
+    /* font-size: large; */
+    width: 13.5vw;
+    margin: 0 0 0 .2vw;
+    border: none;
     font-size: large;
 }
 
@@ -77,7 +82,7 @@
 }
 
 .errorPara{
-    margin: 0 0 0 10px;
+    margin: 0 0 0 .1vw;
     color: red;
     font-size: smaller;
     /* display: none; */

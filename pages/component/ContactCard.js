@@ -16,9 +16,7 @@ const ContactCard = (props)=>{
                 <div className={styles.avatarImg}>
                     <img
                         src="/avatar.png"
-                        alt="Avatar"
-                        width={48}
-                        height={48}/>
+                        alt="Avatar"/>
                 </div>
                 <div className={styles.imgDot}/>
                 <div className={styles.info}>
@@ -28,7 +26,8 @@ const ContactCard = (props)=>{
                 <div className={styles.update}>
                     <p className={styles.time}>{new Date(props.time).toTimeString().slice(0,5)}</p>
                     {
-                        props.countState && 
+                        // props.countState && 
+                        true &&
                         <div className={styles.count}>{props.count}</div>
                     }
                 </div>

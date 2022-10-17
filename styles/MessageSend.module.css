@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     /* position: sticky; */
-    margin-top: 10px;
+    margin-top: .5vw;
     position: sticky;
     right: 0;
     bottom: 0;
@@ -15,10 +15,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
-    border-radius: 100px;
-    height: 60px;
-    padding: 0 20px;
+    border: .1vw solid black;
+    border-radius: 100vh;
+    height: 3.2vw;
+    width: 28vw;
+    padding: 0 1vw;
     background: rgba(102, 51, 153, 0.13);
     /* width: 80%; */
 }
@@ -31,8 +32,8 @@
     border: none;
     font-weight: bold;
     color: black;
-    margin: 0 15px;
-    width: 400px;
+    margin: 0 .75vw;
+    width: 20vw;
 }
 
 .text:focus{
@@ -40,18 +41,22 @@
 }
 
 .pinFile{
-    margin-top: 3px;
+    margin-top: .15vw;
+}
+
+.pinFile img {
+    height: 1.8vw;
+    width: 1.8vw;
 }
 
 .sendBtn{
-    height: 70px;
-    width: 70px;
-    border: 0px;
+    height: 3.5vw;
+    width: 3.5vw;
     background: orange;
     border-radius: 100px;
-    padding: 2px 2px 0 0;
-    margin: 0 0 0 20px;
-    box-shadow: 0 0 10px rebeccapurple;
+    padding: .1vw .1vw 0 0;
+    margin: 0 0 0 1vw;
+    box-shadow: 0 0 .5vw rebeccapurple;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,19 +64,28 @@
 
 .sendBtn:hover{
     background: oldlace;
-    border: 3px solid orange;
-    box-shadow: 0 0 15px rebeccapurple;
+    border: .15vw solid orange;
+    box-shadow: 0 0 .75vw rebeccapurple;
+}
+
+.sendBtn img {
+    height: 2vw;
+    width: 2vw;
 }
 
 .emoji{
-    margin-top: 4px;
+    margin-top: .1vw;
     /* display: flex; */
+}
+
+.emoji img {
+    height: 1.8vw;
+    width: 1.8vw;
 }
 
 .emojiPicker{
     /* display: none; */
     position: absolute;
     /* margin: 0 0 100px 0; */
-    bottom: 70px;
-
+    bottom: 3.5vw;
 }

@@ -93,7 +93,7 @@ const SearchAndAddContact = (props) => {
   return (
     <div className={styles.SearchAndAddContactContiner}>
       <div className={styles.search} onClick={() => searchContact()}>
-        <img src="/search-icon.svg" alt="Logo of App" width={30} height={30} />
+        <img className={styles.searchImg} src="/search-icon.svg" alt="Logo of App" />
         {searchToggle && (
           <input
             type="text"
@@ -127,7 +127,7 @@ const SearchAndAddContact = (props) => {
           </div>
         )}
 
-        <AiOutlinePlus size={30} />
+        <AiOutlinePlus size={"1.5vw"} />
       </div>
     </div>
   );

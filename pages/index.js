@@ -333,7 +333,7 @@ export default function Home() {
                         })}
                     </div>
                 </div>
-                <div className={stylesLayout.message} style={{width : !profileToggle? "1340px" : "900px"}}>
+                <div className={stylesLayout.message} style={{width : !profileToggle? "76%" : "51%"}}>
                     {messageSendBarToggle && (<>
                         <div className={stylesLayout.messageContinerHeader}>
                             <div className={stylesLayout.contactProfile} onClick={() => !profileToggle? setProfileToggle(true): setProfileToggle(false)}>
@@ -342,13 +342,15 @@ export default function Home() {
                             </div>
                             <div className={stylesLayout.messageSearchAndMenu}>
                                 <div className={stylesLayout.messageSearch}>
-                                    <CgSearch size={24}/>
+                                    <CgSearch size={"1.6vw"}/>
                                 </div>
                                 <div className={stylesLayout.messageMenu}>
-                                    <HiOutlineDotsVertical size={24}/>
+                                    <HiOutlineDotsVertical size={"1.6vw"}/>
                                 </div>
                             </div>
                         </div>
+
+
                         <div className={stylesLayout.messageArea} id="message-continer" style={{
                                                                                                 overflow: 'auto',
                                                                                                 display: 'flex',

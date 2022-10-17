@@ -1,50 +1,56 @@
 .card{
-    height: 60px;
+    height: 3.6vw;
     width: 100%;
     /* border: 1px solid black; */
     display: flex;
     align-items: center;
     /* justify-content: center; */
-    margin: 6px 0px;
-    padding: 33px 5px;
+    margin: .4vw 0;
+    padding: 0% 1.4%;
     cursor: pointer;
 }
 
 .card:hover{
     background: rgba(255, 0, 0, 0.055);
-    border-radius: 10px;
-    box-shadow: 0 0 8px rebeccapurple;
+    border-radius: .5vw;
+    box-shadow: 0 0 .5vw rebeccapurple;
 }
 
 .active{
-    height: 60px;
+    height: 3.6vw;
     width: 100%;
+    /* border: 1px solid black; */
     display: flex;
     align-items: center;
-    margin: 6px 0px;
-    padding: 33px 5px;
+    /* justify-content: center; */
+    margin: .5rem 0;
+    padding: 0% 1.4%;
+    cursor: pointer;
+
     cursor: pointer;
     background: rgba(255, 0, 0, 0.055);
-    border-radius: 10px;
-    box-shadow: 0 0 8px rebeccapurple;
+    border-radius: .5vw;
+    box-shadow: 0 0 .5vw rebeccapurple;
 }
 
 .avatarImg{
     border: 2px solid white;
-    border-radius: 100px;
+    border-radius: 100%;
     overflow: hidden;
     box-shadow: 0 0 5px rebeccapurple;
+    height: 3vw;
+    width: 3vw;
 }
 
 .imgDot{
-    width: 15px;
-    height: 15px;
+    width: .7vw;
+    height: .7vw;
     background: red;
-    border: 1px solid white;
+    border: .1vw solid white;
     border-radius: 20px;
     position: relative;
-    top: 18px;
-    right: 17px;
+    top: .9vw;
+    right: .7vw;
 }
 
 .info{
@@ -56,13 +62,14 @@
     padding: 0px;
     color: black;
     font-weight: bold;
-    margin: 0 0 4px 0;
+    font-size: .87vw;
+    /* margin: 0 0 1% 0; */
 }
 
 .message{
     margin: 0px;
     padding: 0px;
-    font-size: 13px;
+    font-size: .66vw;
     color: rgb(104, 103, 103);
 }
 
@@ -73,11 +80,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-right: 5px;
+    margin-right: 1.5%;
 }
 
 .time{
-    font-size: 10px;
+    font-size: .55vw;
     font-weight: bold;
     margin: 0px 0 5px 0;
     color: rgb(54, 53, 53);
@@ -86,8 +93,8 @@
 }
 
 .count{
-    width: 20px;
-    height: 20px;
+    width: 1vw;
+    height: 1vw;
     background: rgb(211, 100, 36);
     /* display: inline-block; */
     border-radius: 100px;
@@ -96,11 +103,12 @@
     vertical-align: middle;
     color: white;
     box-shadow: 0 0 15px grey;
-    font-size: 14px;
+    font-size: .7vw;
+    vertical-align:text-top;
 }
 
 .divider{
-    border: 1px solid grey;
+    border: .1vw solid grey;
     width: 60%;
-    margin: auto;
+    margin: 0 auto;
 }
