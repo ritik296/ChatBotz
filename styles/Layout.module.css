@@ -135,3 +135,21 @@
 .messageMenu {
     padding: .25vw;
 }
+
+@media only screen and (max-width: 1498px) {
+    .container{
+        /* margin: 4vh 2.5%;
+        height: 80vh; */
+        display: flex;
+        flex-wrap: wrap;
+        /* background: #000; */
+    }
+
+    .contact {
+        width: 20rem;
+    }
+
+    .message {
+        width: 55vw;
+    }
+}

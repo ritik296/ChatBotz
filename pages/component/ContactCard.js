@@ -26,8 +26,7 @@ const ContactCard = (props)=>{
                 <div className={styles.update}>
                     <p className={styles.time}>{new Date(props.time).toTimeString().slice(0,5)}</p>
                     {
-                        // props.countState && 
-                        true &&
+                        props.countState && 
                         <div className={styles.count}>{props.count}</div>
                     }
                 </div>
